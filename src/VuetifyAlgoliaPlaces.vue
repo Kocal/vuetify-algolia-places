@@ -60,9 +60,9 @@ export default {
     return {
       loading: false,
       query: '',
-      place: !!this.value ? this.value : null,
-      places: !!this.value ? [this.value] : [],
-      filter(item, queryText, itemText) {
+      place: this.value ? this.value : null,
+      places: this.value ? [this.value] : [],
+      filter() {
         return true;
       },
     };
