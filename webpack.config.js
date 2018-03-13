@@ -1,5 +1,9 @@
 const path = require('path');
 
+function resolve(dir) {
+  return path.join(__dirname, '..', dir);
+}
+
 const config = {
   mode: process.env.NODE_ENV || 'development',
   entry: './docs/main',
@@ -17,6 +21,15 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [resolve('src')],
+        options: {
+          formatter: require('eslint-friendly-formatter'),
+        },
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -29,7 +42,7 @@ const config = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: resolve('node_modules'),
       },
     ],
   },
