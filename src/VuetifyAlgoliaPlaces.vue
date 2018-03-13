@@ -4,11 +4,17 @@
     :items="places"
     :loading="loading"
     :search-input.sync="query"
+    :filter="filter"
+    :disabled="disabled"
+    :required="required"
+    :rules="validationRules"
+    :label="label"
     autocomplete
-    hide-details
+    single-line
     return-object
     item-text="value"
     append-icon="location_on"
+    @input="onInput"
   />
 </template>
 
@@ -19,14 +25,56 @@ import algoliasearch from 'algoliasearch/dist/algoliasearchLite';
 
 export default {
   name: 'VuetifyAlgoliaPlaces',
-  props: {},
+  props: {
+    value: {
+      type: Object,
+      required: false,
+      default() {
+        return {};
+      },
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    requiredMessage: {
+      type: String,
+      default: 'You must select a place',
+    },
+    rules: {
+      type: Array,
+      default() {
+        return [v => (v && v.value !== '') || this.requiredMessage];
+      },
+    },
+    label: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       loading: false,
       query: '',
-      place: null,
-      places: [],
+      place: this.value ? this.value : null,
+      places: this.value ? [this.value] : [],
+      filter() {
+        return true;
+      },
     };
+  },
+  computed: {
+    validationRules() {
+      if (!this.required) {
+        return [];
+      }
+
+      return this.rules;
+    },
   },
   watch: {
     query(val) {
@@ -67,6 +115,9 @@ export default {
           this.loading = false;
           console.log(error);
         });
+    },
+    onInput() {
+      this.$emit('input', this.place);
     },
   },
 };
