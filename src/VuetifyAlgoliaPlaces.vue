@@ -4,6 +4,7 @@
     :items="places"
     :loading="loading"
     :search-input.sync="query"
+    :disabled="disabled"
     autocomplete
     hide-details
     return-object
@@ -19,7 +20,12 @@ import algoliasearch from 'algoliasearch/dist/algoliasearchLite';
 
 export default {
   name: 'VuetifyAlgoliaPlaces',
-  props: {},
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       loading: false,
