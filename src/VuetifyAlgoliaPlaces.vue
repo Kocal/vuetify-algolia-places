@@ -9,7 +9,7 @@
     :rules="validationRules"
     :label="label"
     autocomplete
-    hide-details
+    single-line
     return-object
     item-text="value"
     append-icon="location_on"
@@ -25,6 +25,13 @@ import algoliasearch from 'algoliasearch/dist/algoliasearchLite';
 export default {
   name: 'VuetifyAlgoliaPlaces',
   props: {
+    value: {
+      type: Object,
+      required: false,
+      default() {
+        return {};
+      },
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -52,8 +59,8 @@ export default {
     return {
       loading: false,
       query: '',
-      place: null,
-      places: [],
+      place: !!this.value ? this.value : null,
+      places: !!this.value ? [this.value] : [],
     };
   },
   computed: {
@@ -106,7 +113,7 @@ export default {
         });
     },
     onInput() {
-      this.$emit('change', this.place);
+      this.$emit('input', this.place);
     },
   },
 };
