@@ -5,6 +5,8 @@
     :loading="loading"
     :search-input.sync="query"
     :disabled="disabled"
+    :required="required"
+    :rules="validationRules"
     autocomplete
     hide-details
     return-object
@@ -25,6 +27,20 @@ export default {
       type: Boolean,
       default: false,
     },
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    requiredMessage: {
+      type: String,
+      default: 'You must select a place',
+    },
+    rules: {
+      type: Array,
+      default() {
+        return [v => (v && v.value !== '') || this.requiredMessage];
+      },
+    },
   },
   data() {
     return {
@@ -33,6 +49,15 @@ export default {
       place: null,
       places: [],
     };
+  },
+  computed: {
+    validationRules() {
+      if (!this.required) {
+        return [];
+      }
+
+      return this.rules;
+    },
   },
   watch: {
     query(val) {
