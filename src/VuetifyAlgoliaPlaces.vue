@@ -1,9 +1,9 @@
 <template>
   <v-select
     v-model="place"
+    :items="places"
     :loading="loading"
     :search-input.sync="query"
-    :items="places"
     autocomplete
     hide-details
     return-object
@@ -43,14 +43,14 @@ export default {
       this.placesClient = algoliasearch.initPlaces();
     },
     searchPlaces() {
-      const query = this.query;
+      const { query } = this;
 
       this.loading = true;
       this.placesClient.search({
         query,
         language: navigator.language.split('-')[0],
       })
-        .then(content => {
+        .then((content) => {
           this.loading = false;
           this.places = content.hits.map((hit, hitIndex) => formatHit({
             formatInputValue,
@@ -60,7 +60,7 @@ export default {
             rawAnswer: content,
           }));
         })
-        .catch(error => {
+        .catch((error) => {
           this.loading = false;
           console.log(error);
         });
