@@ -12,6 +12,7 @@
     return-object
     item-text="value"
     append-icon="location_on"
+    @input="onInput"
   />
 </template>
 
@@ -98,6 +99,9 @@ export default {
           this.loading = false;
           console.log(error);
         });
+    },
+    onInput() {
+      this.$emit('change', this.place);
     },
   },
 };
