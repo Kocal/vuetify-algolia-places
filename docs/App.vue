@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import VuetifyAlgoliaPlaces from '../src/VuetifyAlgoliaPlaces';
+import VuetifyAlgoliaPlaces from '..';
 
 export default {
   components: { VuetifyAlgoliaPlaces },
