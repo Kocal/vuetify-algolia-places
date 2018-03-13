@@ -7,6 +7,7 @@
     :disabled="disabled"
     :required="required"
     :rules="validationRules"
+    :label="label"
     autocomplete
     hide-details
     return-object
@@ -41,6 +42,10 @@ export default {
       default() {
         return [v => (v && v.value !== '') || this.requiredMessage];
       },
+    },
+    label: {
+      type: String,
+      default: '',
     },
   },
   data() {
