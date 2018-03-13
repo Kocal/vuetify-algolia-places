@@ -4,6 +4,7 @@
     :items="places"
     :loading="loading"
     :search-input.sync="query"
+    :filter="filter"
     :disabled="disabled"
     :required="required"
     :rules="validationRules"
@@ -61,6 +62,9 @@ export default {
       query: '',
       place: !!this.value ? this.value : null,
       places: !!this.value ? [this.value] : [],
+      filter(item, queryText, itemText) {
+        return true;
+      },
     };
   },
   computed: {
