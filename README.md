@@ -9,12 +9,22 @@
 
 ## Installation
 
-`yarn add vuetify-algolia-places`
+Run in your terminal:
 
-and in your component:
+```shell
+yarn add vuetify-algolia-places
+```
+
+Then install the plugin:
 
 ```js
+import Vue from 'vue';
 import VuetifyAlgoliaPlaces from 'vuetify-algolia-places';
+
+Vue.use(VuetifyAlgoliaPlaces, {
+  appId: '...', // Optional
+  apiKey: '...', // Optional
+});
 ```
 
 ## Usage
