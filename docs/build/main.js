@@ -95,7 +95,7 @@
           query: '',
           place: this.value ? this.value : null,
           places: this.value ? [this.value] : [],
-          filter: function(t, e, n) {
+          filter: function() {
             return !0;
           },
         };
