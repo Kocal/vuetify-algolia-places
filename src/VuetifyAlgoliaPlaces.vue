@@ -46,21 +46,24 @@ export default {
       const { query } = this;
 
       this.loading = true;
-      this.placesClient.search({
-        query,
-        language: navigator.language.split('-')[0],
-      })
-        .then((content) => {
-          this.loading = false;
-          this.places = content.hits.map((hit, hitIndex) => formatHit({
-            formatInputValue,
-            hit,
-            hitIndex,
-            query,
-            rawAnswer: content,
-          }));
+      this.placesClient
+        .search({
+          query,
+          language: navigator.language.split('-')[0],
         })
-        .catch((error) => {
+        .then(content => {
+          this.loading = false;
+          this.places = content.hits.map((hit, hitIndex) =>
+            formatHit({
+              formatInputValue,
+              hit,
+              hitIndex,
+              query,
+              rawAnswer: content,
+            })
+          );
+        })
+        .catch(error => {
           this.loading = false;
           console.log(error);
         });
