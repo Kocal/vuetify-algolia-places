@@ -2,7 +2,7 @@
   "name": "vuetify-algolia-places",
   "version": "1.0.0-alpha.1",
   "description": "Algolia places for Vuetify",
-  "main": "src/VuetifyAlgoliaPlaces.vue",
+  "main": "src/index.js",
   "repository": "https://github.com/Kocal/vuetify-algolia-places.git",
   "author": "Hugo Alliaume <kocal@live.fr>",
   "license": "MIT",

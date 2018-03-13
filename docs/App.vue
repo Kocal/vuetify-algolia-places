@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import VuetifyAlgoliaPlaces from '..';
-
 const initialPlace = {
   name: '30 Rue du Sergent Michel Berthet',
   administrative: 'Auvergne-Rhône-Alpes',
@@ -58,7 +56,6 @@ const initialPlace = {
 };
 
 export default {
-  components: { VuetifyAlgoliaPlaces },
   name: 'App',
   data() {
     return {
