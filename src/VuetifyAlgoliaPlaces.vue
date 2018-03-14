@@ -110,10 +110,9 @@ export default {
   },
   methods: {
     initAlgoliaPlaces() {
-      /* eslint-disable-next-line no-underscore-dangle */
-      const { algolia: algoliaOptions } = this.__vuetifyAlgoliaPlaces.options;
+      const { algolia } = this.$vuetifyAlgoliaPlacesOptions;
 
-      this.placesClient = algoliasearch.initPlaces(algoliaOptions.appId, algoliaOptions.apiKey);
+      this.placesClient = algoliasearch.initPlaces(algolia.appId, algolia.apiKey);
     },
     searchPlaces(callback = () => {}) {
       const { query } = this;
