@@ -90,6 +90,13 @@ export default {
   },
   created() {
     this.initAlgoliaPlaces();
+
+    if (this.query !== null) {
+      this.searchPlaces(place => {
+        this.place = place;
+        this.onInput();
+      });
+    }
   },
   methods: {
     initAlgoliaPlaces() {
@@ -98,7 +105,7 @@ export default {
 
       this.placesClient = algoliasearch.initPlaces(algoliaOptions.appId, algoliaOptions.apiKey);
     },
-    searchPlaces() {
+    searchPlaces(callback = () => {}) {
       const { query } = this;
 
       this.loading = true;
@@ -118,6 +125,10 @@ export default {
               rawAnswer: content,
             })
           );
+
+          if (typeof this.places[0] === 'object') {
+            callback(this.places[0]);
+          }
         })
         .catch(error => {
           this.loading = false;
