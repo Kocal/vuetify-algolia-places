@@ -33,7 +33,7 @@
 </template>
 
 <script>
-const initialPlace = '30 Rue du Sergent Michel Berthet, Lyon 9e Arrondissement, France';
+const initialPlace = '30 Rue du Sergent Michel Berthet, Lyon';
 
 export default {
   name: 'App',

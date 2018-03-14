@@ -35,7 +35,7 @@ Vuetify Algolia Places is still under development, so for now there is no way to
 <vuetify-algolia-places v-model="place" />
 ```
 
-The variable `place` will looks like this:
+The variable `place` looks like this:
 
 ```json
 {
@@ -62,7 +62,13 @@ The variable `place` will looks like this:
 }
 ```
 
-**Note :** if you don't store this kind of object in your application, you can still pass a plain string that is equivalent to the value `value`, e.g.: `30 Rue du Sergent Michel Berthet, Lyon 9e Arrondissement, France`.
+##### Note about initial value
+
+If you don't store this kind of object in your application, you can still pass a plain string that is equivalent to the value `value`, e.g.: `30 Rue du Sergent Michel Berthet, Lyon`.
+
+If this value is not `null` during the initialization of the component, it will automatically request Algolia API and use the first hit.
+
+That means if `place` is equal to `30 Rue du Sergent Michel Berthet, Lyon`, it will be automatically transformed to the above JSON object.
 
 ### Props
 
