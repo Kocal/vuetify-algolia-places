@@ -12,8 +12,9 @@
               v-model="place"
               v-bind="options"
               class="mt-5 mb-2"
+              @error="onError"
             />
-            <code v-if="place !== null" class="mb-5 pa-3 d-block">{{ JSON.stringify(place, null, 2) }}</code>
+            <code v-if="typeof place === 'object'" class="mb-5 pa-3 d-block">{{ JSON.stringify(place, null, 2) }}</code>
             <v-card>
               <v-card-title>
                 <h3 class="headline mb-0">Configuration</h3>
@@ -32,28 +33,7 @@
 </template>
 
 <script>
-const initialPlace = {
-  name: '30 Rue du Sergent Michel Berthet',
-  administrative: 'Auvergne-Rhône-Alpes',
-  city: 'Lyon 9e Arrondissement',
-  country: 'France',
-  countryCode: 'fr',
-  type: 'address',
-  latlng: {
-    lat: 45.7704,
-    lng: 4.8053,
-  },
-  postcode: '69009',
-  highlight: {
-    name: '<em>30</em> <em>Rue</em> <em>du</em> <em>Sergent</em> <em>Michel</em> Berthet',
-    city: 'Lyon 9e Arrondissement',
-    administrative: 'Auvergne-Rhône-Alpes',
-    country: 'France',
-  },
-  hitIndex: 0,
-  query: '30 rue du sergent michel',
-  value: '30 Rue du Sergent Michel Berthet, Lyon 9e Arrondissement, Auvergne-Rhône-Alpes, France',
-};
+const initialPlace = '30 Rue du Sergent Michel Berthet, Lyon';
 
 export default {
   name: 'App',
@@ -71,6 +51,11 @@ export default {
     place() {
       delete this.place.hit;
       delete this.place.rawAnswer;
+    },
+  },
+  methods: {
+    onError(error) {
+      console.error(error);
     },
   },
 };
