@@ -12,10 +12,14 @@ const defaultOptions = {
 const install = (Vue, options = {}) => {
   options = Object.assign({}, defaultOptions, options);
 
+  Vue.$vuetifyAlgoliaPlacesOptions = options;
+  Vue.mixin({
+    created() {
+      this.$vuetifyAlgoliaPlacesOptions = options;
+    },
+  });
+
   Vue.component('vuetify-algolia-places', VuetifyAlgoliaPlaces);
-  Vue.prototype.__vuetifyAlgoliaPlaces = {
-    options,
-  };
 };
 
 export default install;
