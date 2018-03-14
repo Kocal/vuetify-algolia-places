@@ -12,6 +12,7 @@
               v-model="place"
               v-bind="options"
               class="mt-5 mb-2"
+              @error="onError"
             />
             <code v-if="typeof place === 'object'" class="mb-5 pa-3 d-block">{{ JSON.stringify(place, null, 2) }}</code>
             <v-card>
@@ -50,6 +51,11 @@ export default {
     place() {
       delete this.place.hit;
       delete this.place.rawAnswer;
+    },
+  },
+  methods: {
+    onError(error) {
+      console.error(error);
     },
   },
 };

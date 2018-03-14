@@ -121,7 +121,7 @@ export default {
         })
         .catch(error => {
           this.loading = false;
-          reject(error);
+          this.$emit('error', error);
         });
     },
     onInput() {
