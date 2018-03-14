@@ -28,7 +28,7 @@
       return Object.prototype.hasOwnProperty.call(t, e);
     }),
     (n.p = 'docs/build/'),
-    n((n.s = 19));
+    n((n.s = 20));
 })([
   function(t, e) {
     function n(t) {
@@ -57,9 +57,28 @@
   function(t, e, n) {
     'use strict';
     Object.defineProperty(e, '__esModule', { value: !0 }), (e.default = void 0);
-    var i = o(n(10)),
-      s = o(n(7)),
-      r = o(n(6));
+    var i = {
+      name: 'App',
+      data: function() {
+        return {
+          place: '30 Rue du Sergent Michel Berthet, Lyon 9e Arrondissement, France',
+          options: { disabled: !1, required: !0, label: 'Search a place' },
+        };
+      },
+      watch: {
+        place: function() {
+          delete this.place.hit, delete this.place.rawAnswer;
+        },
+      },
+    };
+    e.default = i;
+  },
+  function(t, e, n) {
+    'use strict';
+    Object.defineProperty(e, '__esModule', { value: !0 }), (e.default = void 0);
+    var i = o(n(11)),
+      s = o(n(8)),
+      r = o(n(7));
     function o(t) {
       return t && t.__esModule ? t : { default: t };
     }
@@ -67,7 +86,7 @@
       name: 'VuetifyAlgoliaPlaces',
       props: {
         value: {
-          type: Object,
+          type: [Object, String],
           required: !1,
           default: function() {
             return {};
@@ -90,11 +109,13 @@
         label: { type: String, default: '' },
       },
       data: function() {
+        var t = this.value ? ('string' == typeof this.value ? this.value : this.value.value) : null,
+          e = { value: t };
         return {
           loading: !1,
-          query: '',
-          place: this.value ? this.value : null,
-          places: this.value ? [this.value] : [],
+          query: t,
+          place: e,
+          places: t ? [e] : [],
           filter: function() {
             return !0;
           },
@@ -115,7 +136,8 @@
       },
       methods: {
         initAlgoliaPlaces: function() {
-          this.placesClient = r.default.initPlaces();
+          var t = this.__vuetifyAlgoliaPlaces.options.algolia;
+          this.placesClient = r.default.initPlaces(t.appId, t.apiKey);
         },
         searchPlaces: function() {
           var t = this,
@@ -139,43 +161,6 @@
       },
     };
     e.default = a;
-  },
-  function(t, e, n) {
-    'use strict';
-    var i;
-    Object.defineProperty(e, '__esModule', { value: !0 }), (e.default = void 0);
-    var s = {
-        name: '30 Rue du Sergent Michel Berthet',
-        administrative: 'Auvergne-Rhône-Alpes',
-        city: 'Lyon 9e Arrondissement',
-        country: 'France',
-        countryCode: 'fr',
-        type: 'address',
-        latlng: { lat: 45.7704, lng: 4.8053 },
-        postcode: '69009',
-        highlight: {
-          name: '<em>30</em> <em>Rue</em> <em>du</em> <em>Sergent</em> <em>Michel</em> Berthet',
-          city: 'Lyon 9e Arrondissement',
-          administrative: 'Auvergne-Rhône-Alpes',
-          country: 'France',
-        },
-        hitIndex: 0,
-        query: '30 rue du sergent michel',
-        value: '30 Rue du Sergent Michel Berthet, Lyon 9e Arrondissement, Auvergne-Rhône-Alpes, France',
-      },
-      r = {
-        components: { VuetifyAlgoliaPlaces: ((i = n(11)) && i.__esModule ? i : { default: i }).default },
-        name: 'App',
-        data: function() {
-          return { place: s, options: { disabled: !1, required: !0, label: 'Search a place' } };
-        },
-        watch: {
-          place: function() {
-            delete this.place.hit, delete this.place.rawAnswer;
-          },
-        },
-      };
-    e.default = r;
   },
   function(t, e, n) {
     'use strict';
@@ -282,7 +267,7 @@
                               )
                             ),
                             t._v(' '),
-                            null !== t.place
+                            'object' == typeof t.place
                               ? n('code', { staticClass: 'mb-5 pa-3 d-block' }, [
                                   t._v(t._s(JSON.stringify(t.place, null, 2))),
                                 ])
@@ -395,6 +380,23 @@
         });
       },
       s = [];
+  },
+  function(t, e, n) {
+    'use strict';
+    n.r(e);
+    var i = n(1),
+      s = n.n(i);
+    for (var r in i)
+      'default' !== r &&
+        (function(t) {
+          n.d(e, t, function() {
+            return i[t];
+          });
+        })(r);
+    var o = n(4),
+      a = n(3),
+      u = Object(a.a)(s.a, o.a, o.b, !1, null, null, null);
+    e.default = u.exports;
   },
   function(t, e, n) {
     (function(n) {
@@ -2530,8 +2532,8 @@
         return console.error('Could not parse object', n), console.error(t), { value: 'Could not parse object' };
       }
     };
-    var s = o(n(9)),
-      r = o(n(8));
+    var s = o(n(10)),
+      r = o(n(9));
     function o(t) {
       return t && t.__esModule ? t : { default: t };
     }
@@ -2549,7 +2551,7 @@
   function(t, e, n) {
     'use strict';
     n.r(e);
-    var i = n(1),
+    var i = n(2),
       s = n.n(i);
     for (var r in i)
       'default' !== r &&
@@ -2565,20 +2567,17 @@
   },
   function(t, e, n) {
     'use strict';
-    n.r(e);
-    var i = n(2),
-      s = n.n(i);
-    for (var r in i)
-      'default' !== r &&
-        (function(t) {
-          n.d(e, t, function() {
-            return i[t];
-          });
-        })(r);
-    var o = n(4),
-      a = n(3),
-      u = Object(a.a)(s.a, o.a, o.b, !1, null, null, null);
-    e.default = u.exports;
+    Object.defineProperty(e, '__esModule', { value: !0 }), (e.default = void 0);
+    var i,
+      s = (i = n(12)) && i.__esModule ? i : { default: i };
+    var r = { algolia: { apiKey: null, appId: null } },
+      o = function(t) {
+        var e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+        (e = Object.assign({}, r, e)),
+          t.component('vuetify-algolia-places', s.default),
+          (t.prototype.__vuetifyAlgoliaPlaces = { options: e });
+      };
+    e.default = o;
   },
   function(t, e) {
     t.exports = function(t) {
@@ -14804,7 +14803,7 @@
         'object' === o(e) && 'object' === o(t)
           ? (t.exports = r())
           : ((i = []), void 0 === (s = 'function' == typeof (n = r) ? n.apply(e, i) : n) || (t.exports = s));
-    }.call(this, n(13)(t)));
+    }.call(this, n(14)(t)));
   },
   function(t, e) {
     var n,
@@ -15027,7 +15026,7 @@
           }
         }
       })('undefined' == typeof self ? (void 0 === t ? this : t) : self);
-    }.call(this, n(0), n(15)));
+    }.call(this, n(0), n(16)));
   },
   function(t, e, n) {
     (function(t) {
@@ -15062,7 +15061,7 @@
               t._onTimeout && t._onTimeout();
             }, e));
         }),
-        n(16),
+        n(17),
         (e.setImmediate =
           ('undefined' != typeof self && self.setImmediate) ||
           (void 0 !== t && t.setImmediate) ||
@@ -18297,21 +18296,23 @@
           }, 0);
       var gs = dn;
       e.default = gs;
-    }.call(this, n(0), n(17).setImmediate));
+    }.call(this, n(0), n(18).setImmediate));
   },
   function(t, e, n) {
     'use strict';
-    var i = o(n(18)),
-      s = o(n(14)),
-      r = o(n(12));
-    function o(t) {
+    var i = a(n(19)),
+      s = a(n(15)),
+      r = a(n(13)),
+      o = a(n(6));
+    function a(t) {
       return t && t.__esModule ? t : { default: t };
     }
     i.default.use(s.default),
+      i.default.use(r.default),
       new i.default({
         el: '#app',
         render: function(t) {
-          return t(r.default);
+          return t(o.default);
         },
       });
   },
