@@ -55,6 +55,16 @@ export default {
       type: String,
       default: '',
     },
+    language: {
+      type: String,
+      default: navigator.language.split('-')[0],
+    },
+    countries: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
   },
   data() {
     // The initial value can be a string or an object
@@ -107,12 +117,15 @@ export default {
     },
     searchPlaces(callback = () => {}) {
       const { query } = this;
+      const language = this.language.toLowerCase();
+      const countries = this.countries.map(country => country.toLowerCase());
 
       this.loading = true;
       this.placesClient
         .search({
           query,
-          language: navigator.language.split('-')[0],
+          language,
+          countries,
         })
         .then(content => {
           this.loading = false;
