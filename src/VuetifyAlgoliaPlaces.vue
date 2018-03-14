@@ -58,6 +58,7 @@ export default {
   },
   data() {
     // The initial value can be a string or an object
+    // eslint-disable-next-line no-nested-ternary
     const initialValue = this.value ? (typeof this.value === 'string' ? this.value : this.value.value) : null;
     const initialPlace = { value: initialValue };
 
@@ -120,7 +121,7 @@ export default {
         })
         .catch(error => {
           this.loading = false;
-          console.log(error);
+          reject(error);
         });
     },
     onInput() {
