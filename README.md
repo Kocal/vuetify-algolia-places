@@ -22,8 +22,10 @@ import Vue from 'vue';
 import VuetifyAlgoliaPlaces from 'vuetify-algolia-places';
 
 Vue.use(VuetifyAlgoliaPlaces, {
-  appId: '...', // Optional
-  apiKey: '...', // Optional
+  algolia: {
+    appId: '...', // Optional
+    apiKey: '...', // Optional
+  }
 });
 ```
 
