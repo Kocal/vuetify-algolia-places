@@ -20,9 +20,17 @@
                 <h3 class="headline mb-0">Configuration</h3>
               </v-card-title>
               <v-card-text>
-                <v-switch v-model="options.disabled" label="Disabled" color="primary"/>
-                <v-switch v-model="options.required" label="Required" color="primary"/>
-                <v-text-field v-model="options.label" label="Label"/>
+                <v-layout>
+                  <v-flex>
+                    <v-switch v-model="options.disabled" label="Disabled" color="primary"/>
+                    <v-switch v-model="options.required" label="Required" color="primary"/>
+                  </v-flex>
+                  <v-flex>
+                    <v-text-field v-model="options.label" label="Label"/>
+                    <v-select v-model="options.language" :items="languages" label="Language"/>
+                    <v-select v-model="options.countries" :items="countries" multiple label="Countries"/>
+                  </v-flex>
+                </v-layout>
               </v-card-text>
             </v-card>
           </v-flex>
@@ -40,10 +48,14 @@ export default {
   data() {
     return {
       place: initialPlace,
+      languages: ['fr', 'en', 'es'],
+      countries: ['fr', 'gb', 'es'],
       options: {
         disabled: false,
         required: true,
         label: 'Search a place',
+        language: 'fr',
+        countries: [],
       },
     };
   },
