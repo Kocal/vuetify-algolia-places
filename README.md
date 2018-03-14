@@ -32,8 +32,37 @@ Vue.use(VuetifyAlgoliaPlaces, {
 Vuetify Algolia Places is still under development, so for now there is no way to specify props nor events.
 
 ```vue
-<vuetify-algolia-places />
+<vuetify-algolia-places v-model="place" />
 ```
+
+The variable `place` will looks like this:
+
+```json
+{
+  "name": "30 Rue du Sergent Michel Berthet",
+  "administrative": "Auvergne-Rhône-Alpes",
+  "city": "Lyon 9e Arrondissement",
+  "country": "France",
+  "countryCode": "fr",
+  "type": "address",
+  "latlng": {
+    "lat": 45.7704,
+    "lng": 4.80536
+  },
+  "postcode": "69009",
+  "highlight": {
+    "name": "<em>30</em> <em>Rue</em> <em>du</em> <em>Sergent</em> <em>Michel</em> <em>Be</em>rthet",
+    "city": "Lyon 9e Arrondissement",
+    "administrative": "Auvergne-Rhône-Alpes",
+    "country": "France"
+  },
+  "hitIndex": 0,
+  "query": "30 rue du sergent michel berthet",
+  "value": "30 Rue du Sergent Michel Berthet, Lyon 9e Arrondissement, Auvergne-Rhône-Alpes, France"
+}
+```
+
+**Note :** if you don't store this kind of object in your application, you can still pass a plain string that is equivalent to the value `value`, e.g.: `30 Rue du Sergent Michel Berthet, Lyon 9e Arrondissement, France`.
 
 ### Props
 
