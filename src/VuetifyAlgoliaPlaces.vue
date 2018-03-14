@@ -27,7 +27,7 @@ export default {
   name: 'VuetifyAlgoliaPlaces',
   props: {
     value: {
-      type: Object,
+      type: [Object, String],
       required: false,
       default() {
         return {};
@@ -57,11 +57,15 @@ export default {
     },
   },
   data() {
+    // The initial value can be a string or an object
+    const initialValue = this.value ? (typeof this.value === 'string' ? this.value : this.value.value) : null;
+    const initialPlace = { value: initialValue };
+
     return {
       loading: false,
-      query: '',
-      place: this.value ? this.value : null,
-      places: this.value ? [this.value] : [],
+      query: initialValue,
+      place: initialPlace,
+      places: initialValue ? [initialPlace] : [],
       filter() {
         return true;
       },
