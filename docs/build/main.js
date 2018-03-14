@@ -62,7 +62,9 @@
       data: function() {
         return {
           place: '30 Rue du Sergent Michel Berthet, Lyon',
-          options: { disabled: !1, required: !0, label: 'Search a place' },
+          languages: ['fr', 'en', 'es'],
+          countries: ['fr', 'gb', 'es'],
+          options: { disabled: !1, required: !0, label: 'Search a place', language: 'fr', countries: [] },
         };
       },
       watch: {
@@ -124,6 +126,13 @@
           },
         },
         label: { type: String, default: '' },
+        language: { type: String, default: navigator.language.split('-')[0] },
+        countries: {
+          type: Array,
+          default: function() {
+            return [];
+          },
+        },
       },
       data: function() {
         var t = this.value ? ('string' == typeof this.value ? this.value : this.value.value) : null,
@@ -164,10 +173,14 @@
         searchPlaces: function() {
           var t = this,
             e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : function() {},
-            n = this.query;
+            n = this.query,
+            r = this.language.toLowerCase(),
+            o = this.countries.map(function(t) {
+              return t.toLowerCase();
+            });
           (this.loading = !0),
             this.placesClient
-              .search({ query: n, language: navigator.language.split('-')[0] })
+              .search({ query: n, language: r, countries: o })
               .then(function(r) {
                 (t.loading = !1),
                   (t.places = r.hits.map(function(t, e) {
@@ -306,38 +319,78 @@
                                 n(
                                   'v-card-text',
                                   [
-                                    n('v-switch', {
-                                      attrs: { label: 'Disabled', color: 'primary' },
-                                      model: {
-                                        value: t.options.disabled,
-                                        callback: function(e) {
-                                          t.$set(t.options, 'disabled', e);
-                                        },
-                                        expression: 'options.disabled',
-                                      },
-                                    }),
-                                    t._v(' '),
-                                    n('v-switch', {
-                                      attrs: { label: 'Required', color: 'primary' },
-                                      model: {
-                                        value: t.options.required,
-                                        callback: function(e) {
-                                          t.$set(t.options, 'required', e);
-                                        },
-                                        expression: 'options.required',
-                                      },
-                                    }),
-                                    t._v(' '),
-                                    n('v-text-field', {
-                                      attrs: { label: 'Label' },
-                                      model: {
-                                        value: t.options.label,
-                                        callback: function(e) {
-                                          t.$set(t.options, 'label', e);
-                                        },
-                                        expression: 'options.label',
-                                      },
-                                    }),
+                                    n(
+                                      'v-layout',
+                                      [
+                                        n(
+                                          'v-flex',
+                                          [
+                                            n('v-switch', {
+                                              attrs: { label: 'Disabled', color: 'primary' },
+                                              model: {
+                                                value: t.options.disabled,
+                                                callback: function(e) {
+                                                  t.$set(t.options, 'disabled', e);
+                                                },
+                                                expression: 'options.disabled',
+                                              },
+                                            }),
+                                            t._v(' '),
+                                            n('v-switch', {
+                                              attrs: { label: 'Required', color: 'primary' },
+                                              model: {
+                                                value: t.options.required,
+                                                callback: function(e) {
+                                                  t.$set(t.options, 'required', e);
+                                                },
+                                                expression: 'options.required',
+                                              },
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        t._v(' '),
+                                        n(
+                                          'v-flex',
+                                          [
+                                            n('v-text-field', {
+                                              attrs: { label: 'Label' },
+                                              model: {
+                                                value: t.options.label,
+                                                callback: function(e) {
+                                                  t.$set(t.options, 'label', e);
+                                                },
+                                                expression: 'options.label',
+                                              },
+                                            }),
+                                            t._v(' '),
+                                            n('v-select', {
+                                              attrs: { items: t.languages, label: 'Language' },
+                                              model: {
+                                                value: t.options.language,
+                                                callback: function(e) {
+                                                  t.$set(t.options, 'language', e);
+                                                },
+                                                expression: 'options.language',
+                                              },
+                                            }),
+                                            t._v(' '),
+                                            n('v-select', {
+                                              attrs: { items: t.countries, multiple: '', label: 'Countries' },
+                                              model: {
+                                                value: t.options.countries,
+                                                callback: function(e) {
+                                                  t.$set(t.options, 'countries', e);
+                                                },
+                                                expression: 'options.countries',
+                                              },
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                      ],
+                                      1
+                                    ),
                                   ],
                                   1
                                 ),
