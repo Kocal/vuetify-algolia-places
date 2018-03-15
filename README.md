@@ -74,7 +74,16 @@ That means if `place` is equal to `30 Rue du Sergent Michel Berthet, Lyon`, it w
 
 ### Props
 
-TODO
+| Name            | Type                                  | Default value                                 | Comment                                                                                                                      |
+| --------------- | ------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| value           | `Object` (or `String` as first value) |                                               | To use with `v-model`                                                                                                        |
+| disabled        | `Boolean`                             | `false`                                       |                                                                                                                              |
+| required        | `Boolean`                             | `false`                                       |                                                                                                                              |
+| requiredMessage | `String`                              | `You must select a place`                     |                                                                                                                              |
+| rules           | `Function[]`                          | A function that check if `value` is not empty |                                                                                                                              |
+| label           | `String`                              | An empty string                               |                                                                                                                              |
+| language        | `String`                              | The first two letters of `navigator.language` | Two letters country code ([ISO 639-1](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements))           |
+| countries       | `String[]`                            | The whole planet                              | Array of two letters country codes ([ISO 639-1](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements)) |
 
 ### Events
 
