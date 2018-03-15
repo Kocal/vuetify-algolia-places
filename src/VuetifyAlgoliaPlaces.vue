@@ -15,7 +15,22 @@
     item-text="value"
     append-icon="location_on"
     @input="onInput"
-  />
+  >
+    <template
+      slot="item"
+      slot-scope="data">
+      <template v-if="typeof data.item !== 'object'">
+        <v-list-tile-content>{{ data.item }}</v-list-tile-content>
+      </template>
+      <template v-else>
+        <v-list-tile-content>
+          <v-list-tile-title
+            v-if="data.item.highlight"
+            v-html="fixHighlight(data.item.highlight)"/>
+        </v-list-tile-content>
+      </template>
+    </template>
+  </v-select>
 </template>
 
 <script>
@@ -149,6 +164,18 @@ export default {
     },
     onInput() {
       this.$emit('input', this.place);
+    },
+    fixHighlight(highlight) {
+      const highlightCopy = Object.assign({}, highlight);
+      const replace = value => (value || '').replace(/<em>/g, '<b>').replace(/<\/em>/g, '</b>');
+
+      Object.entries(highlightCopy).forEach(([key, value]) => {
+        highlightCopy[key] = replace(value);
+      });
+
+      return `${highlightCopy.name}, <small>${highlightCopy.city}, ${highlightCopy.administrative}, ${
+        highlightCopy.country
+      }</small>`;
     },
   },
 };
