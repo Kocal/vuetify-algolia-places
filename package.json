@@ -1,6 +1,6 @@
 {
   "name": "vuetify-algolia-places",
-  "version": "1.0.0-alpha.2-2",
+  "version": "1.0.0-alpha.3",
   "description": "Algolia places for Vuetify",
   "main": "src/index.js",
   "repository": "https://github.com/Kocal/vuetify-algolia-places.git",
