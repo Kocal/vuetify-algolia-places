@@ -6400,8 +6400,8 @@ vue@^2.5.15:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.15.tgz#fdb67861dde967cd8d1b53116380f2f269b45202"
 
 vuetify@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.0.6.tgz#da1b7d32d391294688116529af981fef776bc38a"
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.0.14.tgz#ab1f0e702383f66f9d320fd8e1cd2d63e7871e0b"
 
 watchpack@^1.5.0:
   version "1.5.0"
