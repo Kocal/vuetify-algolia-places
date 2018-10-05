@@ -1,5 +1,5 @@
 <template>
-  <v-select
+  <v-autocomplete
     v-model="place"
     :items="places"
     :loading="loading"
@@ -9,7 +9,6 @@
     :required="required"
     :rules="validationRules"
     :label="label"
-    autocomplete
     single-line
     return-object
     item-text="value"
@@ -30,7 +29,7 @@
         </v-list-tile-content>
       </template>
     </template>
-  </v-select>
+  </v-autocomplete>
 </template>
 
 <script>
