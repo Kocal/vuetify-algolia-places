@@ -6,6 +6,9 @@
   "repository": "https://github.com/Kocal/vuetify-algolia-places.git",
   "author": "Hugo Alliaume <kocal@live.fr>",
   "license": "MIT",
+  "files": [
+    "src"
+  ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "docs:build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
