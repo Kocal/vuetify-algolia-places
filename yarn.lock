@@ -884,9 +884,9 @@ ajv@^6.6.1:
     uri-js "^4.2.2"
 
 algoliasearch@^3.24.0, algoliasearch@^3.25.1:
-  version "3.25.1"
-  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.25.1.tgz#e543108b528e5c89338834473cb8fb082d13d11f"
-  integrity sha512-x8aghcZM7gfNDYAz2kFnhwc8kabV7OdxqvXyy9X8lSsIYynRojfLoDEGHJYdHLVHlwC57vSJ2kLcabM5rrLx7w==
+  version "3.31.0"
+  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.31.0.tgz#c4083375ff02538ef50d9ec73e6a72e5e19ed96f"
+  integrity sha512-RJ3m8bQEitEQvWVfJa8WCTM4B9WSt0D4PPEYoqOga7Q0GAfBOqXTWeFYyDO46o085SWBSBWBInVuKyr5BIFP3A==
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.8"
