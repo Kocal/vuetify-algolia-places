@@ -1,4 +1,5 @@
 const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -16,7 +17,7 @@ const config = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: false
+    noInfo: false,
   },
   module: {
     rules: [
@@ -32,12 +33,6 @@ const config = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
-          },
-        },
       },
       {
         test: /\.js$/,
@@ -46,6 +41,7 @@ const config = {
       },
     ],
   },
+  plugins: [new VueLoaderPlugin()],
 };
 
 module.exports = config;
