@@ -883,10 +883,36 @@ ajv@^6.6.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-algoliasearch@^3.24.0, algoliasearch@^3.25.1:
+algolia-aerial@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/algolia-aerial/-/algolia-aerial-1.5.3.tgz#c8b8ca6bc484164ffc7b36717689a424ea6bfe6c"
+  integrity sha512-LZTpVlYnhqNFd+ru/Spm73omhsagiRQLmjrosa5bJ6/I9OMRp4Sb9pYZkAxcx3RSr+ZNXZqthL7rpXqMFdrnPA==
+
+algoliasearch@^3.25.1:
   version "3.25.1"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.25.1.tgz#e543108b528e5c89338834473cb8fb082d13d11f"
   integrity sha512-x8aghcZM7gfNDYAz2kFnhwc8kabV7OdxqvXyy9X8lSsIYynRojfLoDEGHJYdHLVHlwC57vSJ2kLcabM5rrLx7w==
+  dependencies:
+    agentkeepalive "^2.2.0"
+    debug "^2.6.8"
+    envify "^4.0.0"
+    es6-promise "^4.1.0"
+    events "^1.1.0"
+    foreach "^2.0.5"
+    global "^4.3.2"
+    inherits "^2.0.1"
+    isarray "^2.0.1"
+    load-script "^1.0.0"
+    object-keys "^1.0.11"
+    querystring-es3 "^0.2.1"
+    reduce "^1.0.1"
+    semver "^5.1.0"
+    tunnel-agent "^0.6.0"
+
+algoliasearch@^3.31.0:
+  version "3.31.0"
+  resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.31.0.tgz#c4083375ff02538ef50d9ec73e6a72e5e19ed96f"
+  integrity sha512-RJ3m8bQEitEQvWVfJa8WCTM4B9WSt0D4PPEYoqOga7Q0GAfBOqXTWeFYyDO46o085SWBSBWBInVuKyr5BIFP3A==
   dependencies:
     agentkeepalive "^2.2.0"
     debug "^2.6.8"
@@ -1072,10 +1098,10 @@ atob@^2.0.0:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.0.3.tgz#19c7a760473774468f20b2d2d03372ad7d4cbf5d"
   integrity sha1-GcenYEc3dEaPILLS0DNyrX1Mv10=
 
-autocomplete.js@^0.28.2:
-  version "0.28.3"
-  resolved "https://registry.yarnpkg.com/autocomplete.js/-/autocomplete.js-0.28.3.tgz#b90dc01688613ab16488bbb6f5314fd2a365ec4b"
-  integrity sha512-hW3Qz0gMOkkx59PdCLHtXz52FRKdk0gypsraRZW0Fp5407MykimPs6+Afovl630mnstbmTrjVqz+l2WckfE75w==
+autocomplete.js@^0.33.0:
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/autocomplete.js/-/autocomplete.js-0.33.0.tgz#33d460367e2e7b6c2fe424353d955e022fe4594c"
+  integrity sha512-J0F7BkPhYwXvfs8Skp6v2e2IHYv0SL8INyHYwb7nUpvKHr96g6zS8RNEFGEfEuO3ND+XUsesEMM59LlwQoLfoA==
   dependencies:
     immediate "^3.2.3"
 
@@ -2388,10 +2414,15 @@ eventemitter3@1.x.x:
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
   integrity sha1-HIaZHYFq0eUEdQ5zh0Ik7PO+xQg=
 
-events@^1.0.0, events@^1.1.0, events@^1.1.1:
+events@^1.0.0, events@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
   integrity sha1-nr23Y1rQmccNzEwqH1AEKI6L2SQ=
+
+events@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/events/-/events-3.0.0.tgz#9a0a0dfaf62893d92b875b8f2698ca4114973e88"
+  integrity sha512-Dc381HFWJzEOhQ+d8pkNon++bk9h6cdAoAj4iE6Q4y6xgTzySWXlKn05/TVNpjnfRqi/X0EpJEJohPjNI3zpVA==
 
 eventsource@^1.0.7:
   version "1.0.7"
@@ -4581,13 +4612,14 @@ pkg-dir@^3.0.0:
     find-up "^3.0.0"
 
 places.js@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.6.0.tgz#0fddc485e271eee04103212fb6d0f8b9b1e5b358"
-  integrity sha512-Ysn/fZgpf6kGCtWOWJ+KhYgt0egrizhBVClS2SIs5xaRVKjii2NA4n4ilC6AL7xcgnC1FRYcC0PPMTBjSPXOvw==
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.15.0.tgz#99bb418d8d1ef2ea67d89f2f6cb3a32e5661693b"
+  integrity sha512-9fcWgkkZNedB+rztRoa/21PrLQbuxRJwS1A3ACYnc6DdXF5qb6rUPZvfdxn+rj9C2iQQ6kcCo5+OQFGsYi8WPQ==
   dependencies:
-    algoliasearch "^3.24.0"
-    autocomplete.js "^0.28.2"
-    events "^1.1.1"
+    algolia-aerial "^1.5.3"
+    algoliasearch "^3.31.0"
+    autocomplete.js "^0.33.0"
+    events "^3.0.0"
     insert-css "^2.0.0"
 
 please-upgrade-node@^3.1.1:
