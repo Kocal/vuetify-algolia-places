@@ -11,8 +11,14 @@
 
 Run in your terminal:
 
-```shell
+```bash
 yarn add vuetify-algolia-places
+```
+
+You also need to install [algoliasearch](https://github.com/algolia/algoliasearch-client-javascript) and [places.js](https://github.com/algolia/places):
+
+```bash
+yarn add 'algoliasearch@^3' 'places.js@^1'
 ```
 
 Then install the plugin:
@@ -25,7 +31,7 @@ Vue.use(VuetifyAlgoliaPlaces, {
   algolia: {
     appId: '...', // Optional
     apiKey: '...', // Optional
-  }
+  },
 });
 ```
 
