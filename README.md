@@ -92,7 +92,7 @@ Some [Vuetify Autocomplete component](https://vuetifyjs.com/en/components/autoco
 | `disabled`        | `Boolean` |  `false`                                                |
 | `required`        | `Boolean` |  `false`                                                |
 | `requiredMessage` | `String`  |  `'You must select a place'`                            |
-| `rules`           | `Array`   |  `[v => (v && v.value !== '') || this.requiredMessage]` |
+| `rules`           | `Array`   |  `[v => (v && v.value !== '') \|\| this.requiredMessage]` |
 | `label`           | `String`  |  `'Select a location'`                                  |
 
 ### Events
