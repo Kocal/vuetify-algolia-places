@@ -80,8 +80,24 @@ That means if `place` is equal to `30 Rue du Sergent Michel Berthet, Lyon`, it w
 
 ### Props
 
-TODO
+| Name        | Type        | Default                             | Example        | Comment  |
+| ----------- | ----------- | ----------------------------------- | -------------- | -------- |
+| `language`  | `String`    |  `navigator.language.split('-')[0]` | `'fr'`         | Two letters country code ([ISO 639-1](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements)) |
+| `countries` | `String[]`  |  The whole planet                   | `['fr', 'be']` | Array of two letters country codes ([ISO 639-1](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements)) |
+
+Some [Vuetify Autocomplete component](https://vuetifyjs.com/en/components/autocompletes#api) props are also supported:
+ 
+| Name              | Type      | Default                                                   | Comment |
+| ----------------- | --------- | --------------------------------------------------------- | ------- |
+| `disabled`        | `Boolean` |  `false`                                                  | |
+| `required`        | `Boolean` |  `false`                                                  | Does not work anymore since Vuetify 1.1 |
+| `requiredMessage` | `String`  |  `'You must select a place'`                              | Does not work anymore since Vuetify 1.1 |
+| `rules`           | `Array`   |  `[v => (v && v.value !== '') \|\| this.requiredMessage]` | |
+| `label`           | `String`  |  `'Select a location'`                                    | |
 
 ### Events
 
-TODO
+| Name    | Description                                     | Arguments                                 |
+| ------- | ----------------------------------------------- | ----------------------------------------- |
+| `input` | Emitted when the user select a place            | `@input="onInput"`, `onInput(place) { }`  |
+| `error` | Emitted when there is an error with Algolia API |  `@error="onError"`, `onError(error) { }` |
