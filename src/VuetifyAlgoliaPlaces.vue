@@ -15,17 +15,13 @@
     append-icon="location_on"
     @input="onInput"
   >
-    <template
-      slot="item"
-      slot-scope="data">
+    <template slot="item" slot-scope="data">
       <template v-if="typeof data.item !== 'object'">
         <v-list-tile-content>{{ data.item }}</v-list-tile-content>
       </template>
       <template v-else>
         <v-list-tile-content>
-          <v-list-tile-title
-            v-if="data.item.highlight"
-            v-html="fixHighlight(data.item.highlight)"/>
+          <v-list-tile-title v-if="data.item.highlight" v-html="fixHighlight(data.item.highlight)" />
         </v-list-tile-content>
       </template>
     </template>
@@ -47,6 +43,17 @@ export default {
         return {};
       },
     },
+    language: {
+      type: String,
+      default: navigator.language.split('-')[0],
+    },
+    countries: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+    // Vuetify props
     disabled: {
       type: Boolean,
       default: false,
@@ -68,16 +75,6 @@ export default {
     label: {
       type: String,
       default: '',
-    },
-    language: {
-      type: String,
-      default: navigator.language.split('-')[0],
-    },
-    countries: {
-      type: Array,
-      default() {
-        return [];
-      },
     },
   },
   data() {
