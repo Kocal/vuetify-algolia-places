@@ -8,6 +8,6 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['airbnb-base', 'plugin:vue/recommended', 'prettier'],
-  plugins: ['prettier'],
+  extends: ['airbnb-base', 'plugin:vue/recommended', 'prettier', 'prettier/vue'],
+  plugins: ['prettier', 'vue'],
 };
