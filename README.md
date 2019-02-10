@@ -80,10 +80,13 @@ That means if `place` is equal to `30 Rue du Sergent Michel Berthet, Lyon`, it w
 
 ### Props
 
-| Name        | Type       | Default                             | Example        | Comment                                                                                                                      |
-| ----------- | ---------- | ----------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `language`  | `String`   |  `navigator.language.split('-')[0]` | `'fr'`         | Two letters country code ([ISO 639-1](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements))           |
-| `countries` | `String[]` |  The whole planet                   | `['fr', 'be']` | Array of two letters country codes ([ISO 639-1](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements)) |
+| Name                | Type       | Algolia Places documentation                                                                                              |
+| ------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `type`              |  `String`  | Check [`type` option](https://community.algolia.com/places/documentation.html#api-options-type)                           |
+| `language`          | `String`   | Check [`language` option](https://community.algolia.com/places/documentation.html#api-options-language)                   |
+| `countries`         | `String[]` | Check [`countries` option](https://community.algolia.com/places/documentation.html#api-options-countries)                 |
+| `aroundLatLng`      | `String`   | Check [`aroundLatLng` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLng)           |
+| `aroundLatLngViaIp` | `Boolean`  | Check [`aroundLatLngViaIP` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLngViaIP) |
 
 Every props from [Vuetify Autocomplete component](https://vuetifyjs.com/en/components/autocompletes#api) are supported, except `items`, `loading`, `search-input.sync`, `filter`, `return-object` and `append-icon` that are used internally.
 

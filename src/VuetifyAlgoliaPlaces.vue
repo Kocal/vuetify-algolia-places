@@ -55,6 +55,14 @@ export default {
         return [];
       },
     },
+    aroundLatLng: {
+      type: String,
+      default: null,
+    },
+    aroundLatLngViaIp: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     // The initial value can be a string or an object
@@ -73,12 +81,30 @@ export default {
     };
   },
   computed: {
-    validationRules() {
-      if (!this.required) {
-        return [];
+    searchOptions() {
+      const searchOptions = { query: this.query };
+
+      if (this.type !== null) {
+        searchOptions.type = this.type;
       }
 
-      return this.rules;
+      const language = this.language.toLowerCase();
+      if (language) {
+        searchOptions.language = language;
+      }
+
+      const countries = this.countries.map(country => country.toLowerCase());
+      if (countries.length > 0) {
+        searchOptions.countries = countries;
+      }
+
+      if (this.aroundLatLng) {
+        searchOptions.aroundLatLng = this.aroundLatLng;
+      }
+
+      searchOptions.aroundLatLngViaIP = this.aroundLatLngViaIp;
+
+      return searchOptions;
     },
   },
   watch: {
@@ -86,6 +112,17 @@ export default {
       if (val) {
         this.searchPlaces();
       }
+    },
+    searchOptions: {
+      deep: true,
+      handler(newVal, oldVal) {
+        if (newVal.query !== null && newVal.query === oldVal.query) {
+          this.searchPlaces(place => {
+            this.place = place;
+            this.onInput();
+          });
+        }
+      },
     },
   },
   created() {
@@ -107,7 +144,7 @@ export default {
     searchPlaces(callback = () => {}) {
       this.loading = true;
       this.placesClient
-        .search(this.computeSearchOptions())
+        .search(this.searchOptions)
         .then(content => {
           this.loading = false;
           this.places = content.hits.map((hit, hitIndex) =>
@@ -156,25 +193,6 @@ export default {
       }
 
       return ret;
-    },
-    computeSearchOptions() {
-      const searchOptions = { query: this.query };
-
-      if (this.type !== null) {
-        searchOptions.type = this.type;
-      }
-
-      const language = this.language.toLowerCase();
-      if (language) {
-        searchOptions.language = language;
-      }
-
-      const countries = this.countries.map(country => country.toLowerCase());
-      if (countries.length > 0) {
-        searchOptions.countries = countries;
-      }
-
-      return searchOptions;
     },
   },
 };
