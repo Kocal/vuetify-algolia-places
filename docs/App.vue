@@ -3,6 +3,17 @@
     <v-content>
       <v-toolbar app dark fixed color="primary">
         <v-toolbar-title>Vuetify Algolia Places</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items>
+          <v-btn flat href="https://github.com/Kocal/vuetify-algolia-places" target="_blank">
+            GitHub
+            <v-icon right>open_in_new</v-icon>
+          </v-btn>
+          <v-btn flat href="https://community.algolia.com/places/" target="_blank">
+            Algolia Places
+            <v-icon right>open_in_new</v-icon>
+          </v-btn>
+        </v-toolbar-items>
       </v-toolbar>
       <v-container fluid grid-list-lg style="max-width: 1920px">
         <v-layout justify-center row wrap>
