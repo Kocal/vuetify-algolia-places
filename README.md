@@ -89,7 +89,8 @@ Every props from [Vuetify Autocomplete component](https://vuetifyjs.com/en/compo
 
 ### Events
 
-| Name    | Description                                     | Arguments                                 |
-| ------- | ----------------------------------------------- | ----------------------------------------- |
-| `input` | Emitted when the user select a place            | `@input="onInput"`, `onInput(place) { }`  |
-| `error` | Emitted when there is an error with Algolia API |  `@error="onError"`, `onError(error) { }` |
+| Name    | Description                                                                     | Arguments                                 |
+| ------- | ------------------------------------------------------------------------------- | ----------------------------------------- |
+| `input` | Emitted when the user select a place                                            | `@input="onInput"`, `onInput(place) { }`  |
+| `error` | Emitted when there is an error with Algolia API                                 |  `@error="onError"`, `onError(error) { }` |
+| `clear` |  Emitted when the user click on the _clear button_ (used with prop `clearable`) | `@clear="onClear"`, `onClear() { }`       |
