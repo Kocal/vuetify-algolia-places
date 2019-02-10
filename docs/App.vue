@@ -1,38 +1,63 @@
 <template>
   <v-app>
     <v-content>
-      <v-toolbar dark fixed color="primary">
+      <v-toolbar app dark fixed color="primary">
         <v-toolbar-title>Vuetify Algolia Places</v-toolbar-title>
       </v-toolbar>
-      <v-container fluid fill-height>
-        <v-layout align-center justify-center>
-          <v-flex xs12 sm10 md8 lg6>
-            <h1 class="display-3 text-xs-center">Vuetify Algolia Places</h1>
-            <vuetify-algolia-places
-              v-model="place"
-              v-bind="options"
-              class="mt-5 mb-2"
-              @error="onError"
-            />
-            <code v-if="typeof place === 'object'" class="mb-5 pa-3 d-block">{{ JSON.stringify(place, null, 2) }}</code>
+      <v-container fluid grid-list-lg style="max-width: 1920px">
+        <v-layout justify-center row wrap>
+          <v-flex xs12>
+            <v-container>
+              <h1 class="display-3 text-xs-center">Vuetify Algolia Places</h1>
+              <vuetify-algolia-places
+                v-model="place"
+                v-bind="options"
+                class="mt-5 mb-2"
+                @error="onError"
+                @clear="onClear"
+              />
+            </v-container>
+          </v-flex>
+          <v-flex xs6>
             <v-card>
               <v-card-title>
                 <h3 class="headline mb-0">Configuration</h3>
               </v-card-title>
               <v-card-text>
-                <v-layout>
-                  <v-flex>
-                    <v-switch v-model="options.disabled" label="Disabled" color="primary"/>
-                    <v-switch v-model="options.required" label="Required" color="primary"/>
+                <v-select v-model="options.language" :items="languages" label="Language" clearable />
+                <v-select v-model="options.countries" :items="countries" multiple label="Countries" />
+              </v-card-text>
+              <v-card-title>
+                <h4 class="headline mb-2">Vuetify props</h4>
+              </v-card-title>
+              <v-card-text>
+                <v-layout row wrap>
+                  <v-flex md4 sm12>
+                    <v-switch v-model="options.disabled" label="Disabled" color="primary" hide-details />
+                    <v-switch v-model="options.clearable" label="Clearable" color="primary" hide-details />
+                    <v-switch v-model="options.singleLine" label="Single line" color="primary" hide-details />
+                    <v-switch v-model="options.box" label="Style box" color="primary" hide-details />
+                    <v-switch v-model="options.solo" label="Style solo" color="primary" hide-details />
                   </v-flex>
-                  <v-flex>
-                    <v-text-field v-model="options.label" label="Label"/>
-                    <v-select v-model="options.language" :items="languages" label="Language"/>
-                    <v-select v-model="options.countries" :items="countries" multiple label="Countries"/>
+                  <v-flex md8 sm12>
+                    <v-text-field v-model="options.label" label="Label" />
                   </v-flex>
                 </v-layout>
               </v-card-text>
             </v-card>
+          </v-flex>
+          <v-flex xs6>
+            <v-layout column>
+              <v-flex>
+                <h2 class="headline mb-3">Installation and usage</h2>
+                <code class="pa-3 mb-3 d-block">{{ installationCode }}</code>
+                <code class="pa-3 mb-3 d-block">{{ usageCode }}</code>
+              </v-flex>
+              <v-flex v-if="place">
+                <h2 class="headline mb-3">Place</h2>
+                <code class="mb-3 pa-3 d-block">{{ JSON.stringify(place, null, 2) }}</code>
+              </v-flex>
+            </v-layout>
           </v-flex>
         </v-layout>
       </v-container>
@@ -52,22 +77,89 @@ export default {
       countries: ['fr', 'gb', 'es'],
       options: {
         disabled: false,
-        required: true,
+        clearable: false,
+        singleLine: false,
+        box: false,
+        solo: true,
         label: 'Search a place',
         language: 'fr',
         countries: [],
       },
     };
   },
+  computed: {
+    installationCode() {
+      return `import Vue from 'vue';
+import VuetifyAlgoliaPlaces from 'vuetify-algolia-places';
+
+Vue.use(VuetifyAlgoliaPlaces, {
+  algolia: {
+    appId: '...', // optional
+    apiKey: '...', // optional
+  },
+});`;
+    },
+    usageCode() {
+      let code = '// In a .vue component\n';
+      code += '\n<v-algolia-places';
+      code += `\n  v-model="place"`;
+
+      if (this.options.language) {
+        code += `\n  language="${this.options.language}"`;
+      }
+
+      if (this.options.countries.length > 0) {
+        code += `\n  countries="['${this.options.countries.join("', '")}']"`;
+      }
+
+      if (this.options.label) {
+        code += `\n  label="${this.options.label}"`;
+      }
+
+      if (this.options.disabled) {
+        code += `\n  disabled`;
+      }
+      if (this.options.clearable) {
+        code += `\n  clearable`;
+      }
+      if (this.options.singleLine) {
+        code += `\n  single-line`;
+      }
+      if (this.options.box) {
+        code += `\n  box`;
+      }
+      if (this.options.solo) {
+        code += `\n  solo`;
+      }
+
+      code += '\n/>';
+      return code;
+    },
+  },
   watch: {
     place() {
-      delete this.place.hit;
-      delete this.place.rawAnswer;
+      if (this.place) {
+        delete this.place.hit;
+        delete this.place.rawAnswer;
+      }
+    },
+    'options.box': function(box) {
+      if (box) {
+        this.options.solo = false;
+      }
+    },
+    'options.solo': function(solo) {
+      if (solo) {
+        this.options.box = false;
+      }
     },
   },
   methods: {
     onError(error) {
       console.error(error);
+    },
+    onClear() {
+      console.log('Clear');
     },
   },
 };

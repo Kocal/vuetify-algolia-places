@@ -11,6 +11,7 @@
     item-text="value"
     append-icon="location_on"
     @input="onInput"
+    @click:clear="onClear"
   >
     <template slot="item" slot-scope="data">
       <template v-if="typeof data.item !== 'object'">
@@ -63,7 +64,7 @@ export default {
       place: initialPlace,
       places: initialValue ? [initialPlace] : [],
       filter() {
-        return true;
+        return true; // display all items, Algolia Places is already doing the work
       },
     };
   },
@@ -134,6 +135,10 @@ export default {
     },
     onInput() {
       this.$emit('input', this.place);
+    },
+    onClear() {
+      this.$emit('input', null);
+      this.$emit('clear');
     },
     fixHighlight(highlight) {
       const highlightCopy = Object.assign({}, highlight);
