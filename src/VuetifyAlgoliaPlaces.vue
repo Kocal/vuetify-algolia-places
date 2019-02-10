@@ -41,6 +41,10 @@ export default {
         return {};
       },
     },
+    type: {
+      type: String,
+      default: null,
+    },
     language: {
       type: String,
       default: navigator.language.split('-')[0],
@@ -101,17 +105,9 @@ export default {
       this.placesClient = algoliasearch.initPlaces(algolia.appId, algolia.apiKey);
     },
     searchPlaces(callback = () => {}) {
-      const { query } = this;
-      const language = this.language.toLowerCase();
-      const countries = this.countries.map(country => country.toLowerCase());
-
       this.loading = true;
       this.placesClient
-        .search({
-          query,
-          language,
-          countries,
-        })
+        .search(this.computeSearchOptions())
         .then(content => {
           this.loading = false;
           this.places = content.hits.map((hit, hitIndex) =>
@@ -119,7 +115,7 @@ export default {
               formatInputValue,
               hit,
               hitIndex,
-              query,
+              query: this.query,
               rawAnswer: content,
             })
           );
@@ -140,17 +136,45 @@ export default {
       this.$emit('input', null);
       this.$emit('clear');
     },
-    fixHighlight(highlight) {
-      const highlightCopy = Object.assign({}, highlight);
+    fixHighlight(initialHighlight) {
+      const highlight = Object.assign({}, initialHighlight); // eslint-disable-line
       const replace = value => (value || '').replace(/<em>/g, '<b>').replace(/<\/em>/g, '</b>');
 
-      Object.entries(highlightCopy).forEach(([key, value]) => {
-        highlightCopy[key] = replace(value);
+      Object.entries(highlight).forEach(([key, value]) => {
+        highlight[key] = replace(value);
       });
 
-      return `${highlightCopy.name}, <small>${highlightCopy.city}, ${highlightCopy.administrative}, ${
-        highlightCopy.country
-      }</small>`;
+      let ret = highlight.name;
+      if (highlight.city) {
+        ret += `, <small>${highlight.city}</small>`;
+      }
+      if (highlight.administrative) {
+        ret += `<small>, ${highlight.administrative}</small>`;
+      }
+      if (highlight.country) {
+        ret += `<small>, ${highlight.country}</small>`;
+      }
+
+      return ret;
+    },
+    computeSearchOptions() {
+      const searchOptions = { query: this.query };
+
+      if (this.type !== null) {
+        searchOptions.type = this.type;
+      }
+
+      const language = this.language.toLowerCase();
+      if (language) {
+        searchOptions.language = language;
+      }
+
+      const countries = this.countries.map(country => country.toLowerCase());
+      if (countries.length > 0) {
+        searchOptions.countries = countries;
+      }
+
+      return searchOptions;
     },
   },
 };

@@ -24,6 +24,7 @@
                 <h3 class="headline mb-0">Configuration</h3>
               </v-card-title>
               <v-card-text>
+                <v-select v-model="options.type" :items="types" label="Type" clearable />
                 <v-select v-model="options.language" :items="languages" label="Language" clearable />
                 <v-select v-model="options.countries" :items="countries" multiple label="Countries" />
               </v-card-text>
@@ -73,17 +74,20 @@ export default {
   data() {
     return {
       place: initialPlace,
+      types: ['city', 'country', 'address', 'busStop', 'trainStation', 'townhall', 'airport'],
       languages: ['fr', 'en', 'es'],
       countries: ['fr', 'gb', 'es'],
       options: {
+        type: null,
+        language: 'fr',
+        countries: [],
+        // Vuetify
         disabled: false,
         clearable: false,
         singleLine: false,
         box: false,
         solo: true,
         label: 'Search a place',
-        language: 'fr',
-        countries: [],
       },
     };
   },
@@ -103,6 +107,10 @@ Vue.use(VuetifyAlgoliaPlaces, {
       let code = '// In a .vue component\n';
       code += '\n<v-algolia-places';
       code += `\n  v-model="place"`;
+
+      if (this.options.type) {
+        code += `\n  type="${this.options.type}"`;
+      }
 
       if (this.options.language) {
         code += `\n  language="${this.options.language}"`;
