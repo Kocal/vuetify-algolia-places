@@ -1,5 +1,6 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -39,9 +40,13 @@ const config = {
         loader: 'babel-loader',
         exclude: resolve('node_modules'),
       },
+      {
+        test: /\.styl(us)?$/,
+        use: ['vue-style-loader', 'css-loader', 'stylus-loader'],
+      },
     ],
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [new VueLoaderPlugin(), new VuetifyLoaderPlugin()],
 };
 
 module.exports = config;

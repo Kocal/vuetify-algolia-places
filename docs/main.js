@@ -1,5 +1,6 @@
 import Vue from 'vue';
-import Vuetify from 'vuetify';
+import Vuetify from 'vuetify/lib';
+import 'vuetify/src/stylus/app.styl';
 import VuetifyAlgoliaPlaces from '..';
 
 import App from './App.vue';
