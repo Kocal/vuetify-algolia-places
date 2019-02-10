@@ -28,12 +28,8 @@
                 <v-select v-model="options.language" :items="languages" label="Language" clearable />
                 <v-select v-model="options.countries" :items="countries" multiple label="Countries" />
                 <v-text-field v-model="options.aroundLatLng" label="Around Lat/Lng" placeholder="12.232,23.1" />
-                <v-switch
-                  v-model="options.aroundLatLngViaIp"
-                  label="Around Lat/Lng via IP"
-                  color="primary"
-                  hide-details
-                />
+                <v-switch v-model="options.aroundLatLngViaIp" label="Around Lat/Lng via IP" color="primary" />
+                <v-text-field v-model="options.aroundRadius" type="number" label="Around radius (meters)" />
               </v-card-text>
               <v-card-title>
                 <h4 class="headline mb-2">Vuetify props</h4>
@@ -90,6 +86,7 @@ export default {
         countries: [],
         aroundLatLng: null,
         aroundLatLngViaIp: true,
+        aroundRadius: null,
         // Vuetify
         disabled: false,
         clearable: false,
@@ -135,6 +132,10 @@ Vue.use(VuetifyAlgoliaPlaces, {
 
       if (this.options.aroundLatLngViaIp === false) {
         code += `\n  :around-lat-lng-via-ip="false"`;
+      }
+
+      if (this.options.aroundRadius) {
+        code += `\n  around-radius="${this.options.aroundRadius}"`;
       }
 
       if (this.options.label) {

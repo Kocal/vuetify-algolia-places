@@ -63,6 +63,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    aroundRadius: {
+      type: [Number, String],
+      default: null,
+    },
   },
   data() {
     // The initial value can be a string or an object
@@ -103,6 +107,10 @@ export default {
       }
 
       searchOptions.aroundLatLngViaIP = this.aroundLatLngViaIp;
+
+      if (this.aroundRadius) {
+        searchOptions.aroundRadius = parseFloat(this.aroundRadius);
+      }
 
       return searchOptions;
     },
