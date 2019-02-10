@@ -16,8 +16,12 @@
     "lint:fix": "eslint --ext .js,.vue src --fix",
     "prettier": "prettier '{src,docs}/**/*.{js,vue}'",
     "prettier:write": "npm run prettier -- --write",
-    "precommit": "pretty-quick --staged",
     "prepublish": "npm run docs:build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
