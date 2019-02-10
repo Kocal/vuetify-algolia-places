@@ -1,15 +1,12 @@
 <template>
   <v-autocomplete
     v-model="place"
+    v-bind="$attrs"
+    v-on="$listeners"
     :items="places"
     :loading="loading"
     :search-input.sync="query"
     :filter="filter"
-    :disabled="disabled"
-    :required="required"
-    :rules="validationRules"
-    :label="label"
-    single-line
     return-object
     item-text="value"
     append-icon="location_on"
@@ -52,29 +49,6 @@ export default {
       default() {
         return [];
       },
-    },
-    // Vuetify props
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    required: {
-      type: Boolean,
-      default: false,
-    },
-    requiredMessage: {
-      type: String,
-      default: 'You must select a place',
-    },
-    rules: {
-      type: Array,
-      default() {
-        return [v => (v && v.value !== '') || this.requiredMessage];
-      },
-    },
-    label: {
-      type: String,
-      default: '',
     },
   },
   data() {
