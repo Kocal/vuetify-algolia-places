@@ -24,8 +24,12 @@
                 <h3 class="headline mb-0">Configuration</h3>
               </v-card-title>
               <v-card-text>
+                <v-select v-model="options.type" :items="types" label="Type" clearable />
                 <v-select v-model="options.language" :items="languages" label="Language" clearable />
                 <v-select v-model="options.countries" :items="countries" multiple label="Countries" />
+                <v-text-field v-model="options.aroundLatLng" label="Around Lat/Lng" placeholder="12.232,23.1" />
+                <v-switch v-model="options.aroundLatLngViaIp" label="Around Lat/Lng via IP" color="primary" />
+                <v-text-field v-model="options.aroundRadius" type="number" label="Around radius (meters)" />
               </v-card-text>
               <v-card-title>
                 <h4 class="headline mb-2">Vuetify props</h4>
@@ -73,17 +77,23 @@ export default {
   data() {
     return {
       place: initialPlace,
+      types: ['city', 'country', 'address', 'busStop', 'trainStation', 'townhall', 'airport'],
       languages: ['fr', 'en', 'es'],
       countries: ['fr', 'gb', 'es'],
       options: {
+        type: null,
+        language: 'fr',
+        countries: [],
+        aroundLatLng: null,
+        aroundLatLngViaIp: true,
+        aroundRadius: null,
+        // Vuetify
         disabled: false,
         clearable: false,
         singleLine: false,
         box: false,
         solo: true,
         label: 'Search a place',
-        language: 'fr',
-        countries: [],
       },
     };
   },
@@ -104,12 +114,28 @@ Vue.use(VuetifyAlgoliaPlaces, {
       code += '\n<v-algolia-places';
       code += `\n  v-model="place"`;
 
+      if (this.options.type) {
+        code += `\n  type="${this.options.type}"`;
+      }
+
       if (this.options.language) {
         code += `\n  language="${this.options.language}"`;
       }
 
       if (this.options.countries.length > 0) {
         code += `\n  countries="['${this.options.countries.join("', '")}']"`;
+      }
+
+      if (this.options.aroundLatLng) {
+        code += `\n  around-lat-lng="${this.options.aroundLatLng}"`;
+      }
+
+      if (this.options.aroundLatLngViaIp === false) {
+        code += `\n  :around-lat-lng-via-ip="false"`;
+      }
+
+      if (this.options.aroundRadius) {
+        code += `\n  around-radius="${this.options.aroundRadius}"`;
       }
 
       if (this.options.label) {
