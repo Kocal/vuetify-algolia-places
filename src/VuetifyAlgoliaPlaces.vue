@@ -9,7 +9,7 @@
     :filter="filter"
     return-object
     item-text="value"
-    append-icon="location_on"
+    :append-icon="appendIcon"
     @input="onInput"
     @click:clear="onClear"
   >
@@ -44,6 +44,10 @@ export default {
     type: {
       type: String,
       default: null,
+    },
+    'append-icon': {
+      type: String,
+      default: 'location_on',
     },
     language: {
       type: String,
