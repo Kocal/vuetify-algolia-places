@@ -89,7 +89,7 @@ That means if `place` is equal to `30 Rue du Sergent Michel Berthet, Lyon`, it w
 | `aroundLatLngViaIp` | `Boolean`  | Check [`aroundLatLngViaIP` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLngViaIP) |
 | `aroundRadius`      | `Number`   | Check [`aroundRadius` option](https://community.algolia.com/places/documentation.html#api-options-aroundRadius)           |
 
-Every props from [Vuetify Autocomplete component](https://vuetifyjs.com/en/components/autocompletes#api) are supported, except `items`, `loading`, `search-input.sync`, `filter`, `return-object` and `append-icon` that are used internally.
+Every props from [Vuetify Autocomplete component](https://vuetifyjs.com/en/components/autocompletes#api) are supported, except `items`, `loading`, `search-input.sync`, `filter` and `return-object` that are used internally.
 
 ### Events
 
