@@ -15,8 +15,7 @@
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
     "prettier": "prettier '{src,docs}/**/*.{js,vue}'",
-    "prettier:write": "npm run prettier -- --write",
-    "prepublish": "npm run docs:build"
+    "prettier:write": "npm run prettier -- --write"
   },
   "husky": {
     "hooks": {
