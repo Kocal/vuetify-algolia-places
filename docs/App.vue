@@ -19,7 +19,7 @@
         <v-layout justify-center row wrap>
           <v-flex xs12>
             <v-container>
-              <h1 class="display-3 text-xs-center">Vuetify Algolia Places</h1>
+              <h2 class="display-2 text-xs-center">Vuetify Algolia Places</h2>
               <vuetify-algolia-places
                 v-model="place"
                 v-bind="options"
@@ -35,18 +35,26 @@
                 <h3 class="headline mb-0">Configuration</h3>
               </v-card-title>
               <v-card-text>
-                <v-select v-model="options.type" :items="types" label="Type" clearable />
-                <v-select v-model="options.language" :items="languages" label="Language" clearable />
-                <v-select v-model="options.countries" :items="countries" multiple label="Countries" />
-                <v-text-field v-model="options.aroundLatLng" label="Around Lat/Lng" placeholder="12.232,23.1" />
-                <v-switch v-model="options.aroundLatLngViaIp" label="Around Lat/Lng via IP" color="primary" />
-                <v-text-field v-model="options.aroundRadius" type="number" label="Around radius (meters)" />
-                <v-select v-model="options.appendIcon" :items="appendIcons" label="Append icon">
-                  <template slot="item" slot-scope="{ item }">
-                    <v-icon>{{ item }}</v-icon>
-                    <span class="ml-2">{{ item }}</span>
-                  </template>
-                </v-select>
+                <v-layout wrap>
+                  <v-flex xs12 sm6 md4>
+                    <v-select v-model="options.type" :items="types" label="Type" clearable />
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-select v-model="options.language" :items="languages" label="Language" clearable />
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-select v-model="options.countries" :items="countries" multiple label="Countries" />
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="options.aroundLatLng" label="Around Lat/Lng" placeholder="12.232,23.1" />
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="options.aroundRadius" type="number" label="Around radius (meters)" />
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-switch v-model="options.aroundLatLngViaIp" label="Around Lat/Lng via IP" color="primary" />
+                  </v-flex>
+                </v-layout>
               </v-card-text>
               <v-card-title>
                 <h4 class="headline mb-2">Vuetify props</h4>
@@ -62,6 +70,12 @@
                   </v-flex>
                   <v-flex md8 sm12>
                     <v-text-field v-model="options.label" label="Label" />
+                    <v-select v-model="options.appendIcon" :items="appendIcons" label="Append icon">
+                      <template slot="item" slot-scope="{ item }">
+                        <v-icon>{{ item }}</v-icon>
+                        <span class="ml-2">{{ item }}</span>
+                      </template>
+                    </v-select>
                   </v-flex>
                 </v-layout>
               </v-card-text>
@@ -155,6 +169,10 @@ Vue.use(VuetifyAlgoliaPlaces, {
 
       if (this.options.aroundRadius) {
         code += `\n  around-radius="${this.options.aroundRadius}"`;
+      }
+
+      if (this.options.appendIcon && this.options.appendIcon !== 'location_on') {
+        code += `\n  append-icon="${this.options.appendIcon}"`;
       }
 
       if (this.options.label) {
