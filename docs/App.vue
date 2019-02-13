@@ -41,6 +41,12 @@
                 <v-text-field v-model="options.aroundLatLng" label="Around Lat/Lng" placeholder="12.232,23.1" />
                 <v-switch v-model="options.aroundLatLngViaIp" label="Around Lat/Lng via IP" color="primary" />
                 <v-text-field v-model="options.aroundRadius" type="number" label="Around radius (meters)" />
+                <v-select v-model="options.appendIcon" :items="appendIcons" label="Append icon">
+                  <template slot="item" slot-scope="{ item }">
+                    <v-icon>{{ item }}</v-icon>
+                    <span class="ml-2">{{ item }}</span>
+                  </template>
+                </v-select>
               </v-card-text>
               <v-card-title>
                 <h4 class="headline mb-2">Vuetify props</h4>
@@ -91,6 +97,7 @@ export default {
       types: ['city', 'country', 'address', 'busStop', 'trainStation', 'townhall', 'airport'],
       languages: ['fr', 'en', 'es'],
       countries: ['fr', 'gb', 'es'],
+      appendIcons: ['location_on', 'local_airport', 'location_city'],
       options: {
         type: null,
         language: 'fr',
@@ -105,6 +112,7 @@ export default {
         box: false,
         solo: true,
         label: 'Search a place',
+        appendIcon: 'location_on',
       },
     };
   },
