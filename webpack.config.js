@@ -2,6 +2,7 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -47,7 +48,12 @@ const config = {
       },
     ],
   },
-  plugins: [new VueLoaderPlugin(), new VuetifyLoaderPlugin(), new HtmlWebpackPlugin({ template: 'docs/index.html' })],
+  plugins: [
+    new VueLoaderPlugin(),
+    new VuetifyLoaderPlugin(),
+    new HtmlWebpackPlugin({ template: 'docs/index.html' }),
+    new CleanWebpackPlugin(['docs/build']),
+  ],
 };
 
 module.exports = config;
