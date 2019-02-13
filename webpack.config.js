@@ -1,6 +1,7 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -11,7 +12,6 @@ const config = {
   entry: './docs/main',
   output: {
     path: path.join(__dirname, './docs/build'),
-    publicPath: 'docs/build/',
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -46,7 +46,7 @@ const config = {
       },
     ],
   },
-  plugins: [new VueLoaderPlugin(), new VuetifyLoaderPlugin()],
+  plugins: [new VueLoaderPlugin(), new VuetifyLoaderPlugin(), new HtmlWebpackPlugin({ template: 'docs/index.html' })],
 };
 
 module.exports = config;
