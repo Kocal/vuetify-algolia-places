@@ -45,10 +45,6 @@ export default {
       type: String,
       default: null,
     },
-    'append-icon': {
-      type: String,
-      default: 'location_on',
-    },
     language: {
       type: String,
       default: navigator.language.split('-')[0],
@@ -70,6 +66,11 @@ export default {
     aroundRadius: {
       type: [Number, String],
       default: null,
+    },
+    // Vuetify props
+    appendIcon: {
+      type: String,
+      default: 'location_on',
     },
   },
   data() {
