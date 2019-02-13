@@ -1,6 +1,8 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -10,8 +12,8 @@ const config = {
   mode: process.env.NODE_ENV || 'development',
   entry: './docs/main',
   output: {
+    filename: '[name].[contenthash:8].js',
     path: path.join(__dirname, './docs/build'),
-    publicPath: 'docs/build/',
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -46,7 +48,12 @@ const config = {
       },
     ],
   },
-  plugins: [new VueLoaderPlugin(), new VuetifyLoaderPlugin()],
+  plugins: [
+    new VueLoaderPlugin(),
+    new VuetifyLoaderPlugin(),
+    new HtmlWebpackPlugin({ template: 'docs/index.html' }),
+    new CleanWebpackPlugin(['docs/build']),
+  ],
 };
 
 module.exports = config;
