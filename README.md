@@ -7,6 +7,10 @@
 [![npm](https://img.shields.io/npm/v/vuetify-algolia-places.svg?style=flat-square)](https://www.npmjs.com/package/vuetify-algolia-places)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)
 
+## Demo
+
+A demo is available [here](https://vuetify-algolia-places.netlify.com).
+
 ## Installation
 
 Run in your terminal:
