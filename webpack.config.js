@@ -11,6 +11,7 @@ const config = {
   mode: process.env.NODE_ENV || 'development',
   entry: './docs/main',
   output: {
+    filename: '[name].[contenthash:8].js',
     path: path.join(__dirname, './docs/build'),
   },
   resolve: {
