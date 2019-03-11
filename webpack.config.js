@@ -52,7 +52,7 @@ const config = {
     new VueLoaderPlugin(),
     new VuetifyLoaderPlugin(),
     new HtmlWebpackPlugin({ template: 'docs/index.html' }),
-    new CleanWebpackPlugin(['docs/build']),
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['docs/build'] }),
   ],
 };
 
