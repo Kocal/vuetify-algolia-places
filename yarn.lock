@@ -6385,9 +6385,9 @@ vuetify-loader@^1.2.1:
     loader-utils "^1.1.0"
 
 vuetify@^1.4.4:
-  version "1.5.7"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.7.tgz#92e7558f590ccb5696bbd1156381e8537c86c2f9"
-  integrity sha512-e7Vvj9gh41Pth7pXJxH1hrm8wfnvWt3nvxPCnwBWTgr4kiUXTG4CaUBqWVVgyfLjJGJSyR1y1EoRNEP5tJv0HQ==
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.8.tgz#58bbbe07a05e1cb00fffa9abed3f2f1d8e6ca29d"
+  integrity sha512-AmyJb/kAIivEC+CM5BVqiumxUeaJRB4oKzKjEzXpI0tCbkNQIrTVrVjB1+ZnAk9al/6fJp63Hq8uy2RfRmZoRg==
 
 watchpack@^1.5.0:
   version "1.6.0"
