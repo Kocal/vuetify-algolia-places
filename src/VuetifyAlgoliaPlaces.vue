@@ -30,6 +30,7 @@
 import formatHit from 'places.js/src/formatHit';
 import formatInputValue from 'places.js/src/formatInputValue';
 import algoliasearch from 'algoliasearch/dist/algoliasearchLite';
+import debounce from 'debounce';
 
 export default {
   name: 'VuetifyAlgoliaPlaces',
@@ -66,6 +67,10 @@ export default {
     aroundRadius: {
       type: [Number, String],
       default: null,
+    },
+    debounce: {
+      type: [Number],
+      default: 0,
     },
     // Vuetify props
     appendIcon: {
@@ -123,14 +128,22 @@ export default {
   watch: {
     query(val) {
       if (val) {
-        this.searchPlaces();
+        this.debouncedSearchPlaces();
       }
+    },
+    debounce: {
+      immediate: true,
+      handler(val) {
+        if (val && val > 0) {
+          this.debouncedSearchPlaces = debounce(this.searchPlaces, this.debounce);
+        }
+      },
     },
     searchOptions: {
       deep: true,
       handler(newVal, oldVal) {
         if (newVal.query !== null && newVal.query === oldVal.query) {
-          this.searchPlaces(place => {
+          this.debouncedSearchPlaces(place => {
             this.place = place;
             this.onInput();
           });
@@ -153,6 +166,9 @@ export default {
       const { algolia } = this.$vuetifyAlgoliaPlacesOptions;
 
       this.placesClient = algoliasearch.initPlaces(algolia.appId, algolia.apiKey);
+    },
+    debouncedSearchPlaces(callback = () => {}) {
+      return this.searchPlaces(callback);
     },
     searchPlaces(callback = () => {}) {
       this.loading = true;
