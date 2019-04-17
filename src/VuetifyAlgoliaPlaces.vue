@@ -69,7 +69,7 @@ export default {
       default: null,
     },
     debounce: {
-      type: [Number],
+      type: [Boolean, Number],
       default: 0,
     },
     // Vuetify props
@@ -134,8 +134,14 @@ export default {
     debounce: {
       immediate: true,
       handler(val) {
-        if (val && val > 0) {
-          this.debouncedSearchPlaces = debounce(this.searchPlaces, this.debounce);
+        if (val) {
+          if (typeof val === 'boolean') {
+            this.debouncedSearchPlaces = debounce(this.searchPlaces, 300);
+          } else if (typeof val === 'number') {
+            this.debouncedSearchPlaces = debounce(this.searchPlaces, val);
+          }
+        } else {
+          this.debouncedSearchPlaces = this.searchPlaces;
         }
       },
     },
@@ -167,9 +173,6 @@ export default {
 
       this.placesClient = algoliasearch.initPlaces(algolia.appId, algolia.apiKey);
     },
-    debouncedSearchPlaces(callback = () => {}) {
-      return this.searchPlaces(callback);
-    },
     searchPlaces(callback = () => {}) {
       this.loading = true;
       this.placesClient
@@ -194,6 +197,9 @@ export default {
           this.loading = false;
           this.$emit('error', error);
         });
+    },
+    debouncedSearchPlaces(callback = () => {}) {
+      return this.searchPlaces(callback);
     },
     onInput() {
       this.$emit('input', this.place);

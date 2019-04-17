@@ -26,7 +26,7 @@
                 class="mt-5 mb-2"
                 @error="onError"
                 @clear="onClear"
-                :debounce="300"
+                debounce
               />
             </v-container>
           </v-flex>
