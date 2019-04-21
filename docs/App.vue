@@ -55,7 +55,7 @@
                     <v-switch v-model="options.aroundLatLngViaIp" label="Around Lat/Lng via IP" color="primary" />
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-switch v-model="options.debounce" label="Debounce" color="primary" />
+                    <v-text-field v-model="options.debounce" label="Debounce (ms)" type="number" min="0" />
                   </v-flex>
                 </v-layout>
               </v-card-text>
@@ -122,7 +122,7 @@ export default {
         aroundLatLng: null,
         aroundLatLngViaIp: true,
         aroundRadius: null,
-        debounce: false,
+        debounce: 0,
         // Vuetify
         disabled: false,
         clearable: false,
@@ -184,7 +184,7 @@ Vue.use(VuetifyAlgoliaPlaces, {
       }
 
       if (this.options.debounce) {
-        code += `\n  debounce`;
+        code += `\n  debounce="${this.options.debounce}"`;
       }
 
       if (this.options.disabled) {
