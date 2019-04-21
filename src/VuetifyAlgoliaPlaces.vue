@@ -69,7 +69,7 @@ export default {
       default: null,
     },
     debounce: {
-      type: [Boolean, Number],
+      type: [Boolean, Number, String],
       default: false,
     },
     // Vuetify props
@@ -137,8 +137,8 @@ export default {
         if (val) {
           if (typeof val === 'boolean') {
             this.debouncedSearchPlaces = debounce(this.searchPlaces, 250);
-          } else if (typeof val === 'number') {
-            this.debouncedSearchPlaces = debounce(this.searchPlaces, val);
+          } else if (typeof val === 'number' || typeof val === 'string') {
+            this.debouncedSearchPlaces = debounce(this.searchPlaces, Number(val));
           }
         } else {
           this.debouncedSearchPlaces = this.searchPlaces;
