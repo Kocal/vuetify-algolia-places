@@ -148,7 +148,7 @@ Vue.use(VuetifyAlgoliaPlaces, {
     },
     usageCode() {
       let code = '// In a .vue component\n';
-      code += '\n<v-algolia-places';
+      code += '\n<vuetify-algolia-places';
       code += `\n  v-model="place"`;
 
       if (this.options.type) {
