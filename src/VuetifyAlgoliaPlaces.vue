@@ -136,7 +136,7 @@ export default {
       handler(val) {
         if (val) {
           if (typeof val === 'boolean') {
-            this.debouncedSearchPlaces = debounce(this.searchPlaces, 300);
+            this.debouncedSearchPlaces = debounce(this.searchPlaces, 250);
           } else if (typeof val === 'number') {
             this.debouncedSearchPlaces = debounce(this.searchPlaces, val);
           }
