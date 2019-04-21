@@ -70,7 +70,7 @@ export default {
     },
     debounce: {
       type: [Boolean, Number],
-      default: 0,
+      default: false,
     },
     // Vuetify props
     appendIcon: {
