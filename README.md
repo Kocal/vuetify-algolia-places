@@ -84,14 +84,15 @@ That means if `place` is equal to `30 Rue du Sergent Michel Berthet, Lyon`, it w
 
 ### Props
 
-| Name                | Type       | Algolia Places documentation                                                                                              |
-| ------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `type`              |  `String`  | Check [`type` option](https://community.algolia.com/places/documentation.html#api-options-type)                           |
-| `language`          | `String`   | Check [`language` option](https://community.algolia.com/places/documentation.html#api-options-language)                   |
-| `countries`         | `String[]` | Check [`countries` option](https://community.algolia.com/places/documentation.html#api-options-countries)                 |
-| `aroundLatLng`      | `String`   | Check [`aroundLatLng` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLng)           |
-| `aroundLatLngViaIp` | `Boolean`  | Check [`aroundLatLngViaIP` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLngViaIP) |
-| `aroundRadius`      | `Number`   | Check [`aroundRadius` option](https://community.algolia.com/places/documentation.html#api-options-aroundRadius)           |
+| Name                | Type              | Algolia Places documentation                                                                                              |
+| ------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `type`              |  `String`         | Check [`type` option](https://community.algolia.com/places/documentation.html#api-options-type)                           |
+| `language`          | `String`          | Check [`language` option](https://community.algolia.com/places/documentation.html#api-options-language)                   |
+| `countries`         | `String[]`        | Check [`countries` option](https://community.algolia.com/places/documentation.html#api-options-countries)                 |
+| `aroundLatLng`      | `String`          | Check [`aroundLatLng` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLng)           |
+| `aroundLatLngViaIp` | `Boolean`         | Check [`aroundLatLngViaIP` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLngViaIP) |
+| `aroundRadius`      | `Number`          | Check [`aroundRadius` option](https://community.algolia.com/places/documentation.html#api-options-aroundRadius)           |
+| `debounce`          | `Number\|Boolean` |  Pass `true` to debounce for 250ms, or pass a custom delay. Default: `false`                                              |
 
 Every props from [Vuetify Autocomplete component](https://vuetifyjs.com/en/components/autocompletes#api) are supported, except `items`, `loading`, `search-input.sync`, `filter` and `return-object` that are used internally.
 
