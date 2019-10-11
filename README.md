@@ -93,7 +93,7 @@ That means if `place` is equal to `30 Rue du Sergent Michel Berthet, Lyon`, it w
 | `aroundLatLngViaIp` | `Boolean`        | Check [`aroundLatLngViaIP` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLngViaIP) |
 | `aroundRadius`      | `Number`         | Check [`aroundRadius` option](https://community.algolia.com/places/documentation.html#api-options-aroundRadius)           |
 | `debounce`          | `Number|Boolean` | Pass `true` to debounce for 250ms, or pass a custom delay. Default: `false`                                               |
-|  |
+|                     |
 
 Every props from [Vuetify Autocomplete component](https://vuetifyjs.com/en/components/autocompletes#api) are supported, except `items`, `loading`, `search-input.sync`, `filter` and `return-object` that are used internally.
 
@@ -107,7 +107,7 @@ Every props from [Vuetify Autocomplete component](https://vuetifyjs.com/en/compo
 
 ### Custom highlighting
 
-You can override the default behavior of highlighted search query hits via a custom function and/or slot. When using both, the returned value of your custom highlight function will become the `highlight` prop in the slot.
+You can override the default behavior of highlighted search query hits via a custom function and/or slot. When using both, the returned value of your custom highlight function will become the `highlight` prop in the slot. Read more about Algolia Places highlight object [here](https://community.algolia.com/places/documentation.html#api-suggestion-value).
 
 #### Via function
 
