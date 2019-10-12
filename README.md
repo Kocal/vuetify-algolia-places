@@ -1,9 +1,9 @@
 # Vuetify Algolia Places
 
-> Use [Algolia Places](https://community.algolia.com/places/) with Vuetify.
+> Use [Algolia Places](https://community.algolia.com/places/) with Vuetify and Vue 2.6+.
 
 [![Travis](https://img.shields.io/travis/Kocal/vuetify-algolia-places.svg?style=flat-square)](https://travis-ci.org/Kocal/vuetify-algolia-places)
-[![VueJS 2.x](https://img.shields.io/badge/vue-2.x-brightgreen.svg?style=flat-square)](https://vuejs.org)
+[![VueJS 2.6+](https://img.shields.io/badge/vue-2.6+-brightgreen.svg?style=flat-square)](https://vuejs.org)
 [![npm](https://img.shields.io/npm/v/vuetify-algolia-places.svg?style=flat-square)](https://www.npmjs.com/package/vuetify-algolia-places)
 ![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)
 
@@ -121,7 +121,7 @@ Note that this slot's parent element is a `<v-list-tile-content>`
 
 ```
 <vuetify-algolia-places>
-  <template slot="highlight" slot-scope="{ highlight }">
+  <template v-slot:highlight="{ highlight }">
     <v-list-tile-title>{{ highlight }}</v-list-tile-title>
   </template>
 </vuetify-algolia-places>

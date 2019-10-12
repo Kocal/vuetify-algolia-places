@@ -13,7 +13,7 @@
     @input="onInput"
     @click:clear="onClear"
   >
-    <template slot="item" slot-scope="data">
+    <template v-slot:item="{ item }">
       <template v-if="typeof item !== 'object'">
         <v-list-tile-content>{{ item }}</v-list-tile-content>
       </template>
