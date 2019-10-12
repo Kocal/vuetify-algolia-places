@@ -2,7 +2,6 @@
   <v-autocomplete
     v-model="place"
     v-bind="$attrs"
-    v-on="$listeners"
     :items="places"
     :loading="loading"
     :search-input.sync="query"
@@ -10,16 +9,19 @@
     return-object
     item-text="value"
     :append-icon="appendIcon"
+    v-on="$listeners"
     @input="onInput"
     @click:clear="onClear"
   >
     <template slot="item" slot-scope="data">
-      <template v-if="typeof data.item !== 'object'">
-        <v-list-tile-content>{{ data.item }}</v-list-tile-content>
+      <template v-if="typeof item !== 'object'">
+        <v-list-tile-content>{{ item }}</v-list-tile-content>
       </template>
       <template v-else>
         <v-list-tile-content>
-          <v-list-tile-title v-if="data.item.highlight" v-html="fixHighlight(data.item.highlight)" />
+          <slot name="highlight" :highlight="item.highlight">
+            <v-list-tile-title v-html="item.highlight" />
+          </slot>
         </v-list-tile-content>
       </template>
     </template>
@@ -76,6 +78,30 @@ export default {
     appendIcon: {
       type: String,
       default: 'location_on',
+    },
+    customHighlight: {
+      type: Function,
+      default: initialHighlight => {
+        const highlight = Object.assign({}, initialHighlight); // eslint-disable-line
+        const replace = value => (value || '').replace(/<em>/g, '<b>').replace(/<\/em>/g, '</b>');
+
+        Object.entries(highlight).forEach(([key, value]) => {
+          highlight[key] = replace(value);
+        });
+
+        let ret = highlight.name;
+        if (highlight.city) {
+          ret += `, <small>${highlight.city}</small>`;
+        }
+        if (highlight.administrative) {
+          ret += `<small>, ${highlight.administrative}</small>`;
+        }
+        if (highlight.country) {
+          ret += `<small>, ${highlight.country}</small>`;
+        }
+
+        return ret;
+      },
     },
   },
   data() {
@@ -179,15 +205,20 @@ export default {
         .search(this.searchOptions)
         .then(content => {
           this.loading = false;
-          this.places = content.hits.map((hit, hitIndex) =>
-            formatHit({
-              formatInputValue,
-              hit,
-              hitIndex,
-              query: this.query,
-              rawAnswer: content,
-            })
-          );
+          this.places = content.hits
+            .map((hit, hitIndex) =>
+              formatHit({
+                formatInputValue,
+                hit,
+                hitIndex,
+                query: this.query,
+                rawAnswer: content,
+              })
+            )
+            // formatHit() reforms Algolia's _highlightResult object into a highlight prop in the root of each item.
+            // Making a second pass to apply the highlight function to each array item should have a negligible
+            // performance difference, since the highlight function was originally being called in a v-for in the template
+            .map(p => ({ ...p, highlight: this.customHighlight(p.highlight) }));
 
           if (typeof this.places[0] === 'object') {
             callback(this.places[0]);
@@ -207,27 +238,6 @@ export default {
     onClear() {
       this.$emit('input', null);
       this.$emit('clear');
-    },
-    fixHighlight(initialHighlight) {
-      const highlight = Object.assign({}, initialHighlight); // eslint-disable-line
-      const replace = value => (value || '').replace(/<em>/g, '<b>').replace(/<\/em>/g, '</b>');
-
-      Object.entries(highlight).forEach(([key, value]) => {
-        highlight[key] = replace(value);
-      });
-
-      let ret = highlight.name;
-      if (highlight.city) {
-        ret += `, <small>${highlight.city}</small>`;
-      }
-      if (highlight.administrative) {
-        ret += `<small>, ${highlight.administrative}</small>`;
-      }
-      if (highlight.country) {
-        ret += `<small>, ${highlight.country}</small>`;
-      }
-
-      return ret;
     },
   },
 };

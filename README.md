@@ -84,15 +84,16 @@ That means if `place` is equal to `30 Rue du Sergent Michel Berthet, Lyon`, it w
 
 ### Props
 
-| Name                | Type              | Algolia Places documentation                                                                                              |
-| ------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `type`              |  `String`         | Check [`type` option](https://community.algolia.com/places/documentation.html#api-options-type)                           |
-| `language`          | `String`          | Check [`language` option](https://community.algolia.com/places/documentation.html#api-options-language)                   |
-| `countries`         | `String[]`        | Check [`countries` option](https://community.algolia.com/places/documentation.html#api-options-countries)                 |
-| `aroundLatLng`      | `String`          | Check [`aroundLatLng` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLng)           |
-| `aroundLatLngViaIp` | `Boolean`         | Check [`aroundLatLngViaIP` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLngViaIP) |
-| `aroundRadius`      | `Number`          | Check [`aroundRadius` option](https://community.algolia.com/places/documentation.html#api-options-aroundRadius)           |
-| `debounce`          | `Number\|Boolean` |  Pass `true` to debounce for 250ms, or pass a custom delay. Default: `false`                                              |
+| Name                | Type             | Algolia Places documentation                                                                                              |
+| ------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `type`              |  `String`        | Check [`type` option](https://community.algolia.com/places/documentation.html#api-options-type)                           |
+| `language`          | `String`         | Check [`language` option](https://community.algolia.com/places/documentation.html#api-options-language)                   |
+| `countries`         | `String[]`       | Check [`countries` option](https://community.algolia.com/places/documentation.html#api-options-countries)                 |
+| `aroundLatLng`      | `String`         | Check [`aroundLatLng` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLng)           |
+| `aroundLatLngViaIp` | `Boolean`        | Check [`aroundLatLngViaIP` option](https://community.algolia.com/places/documentation.html#api-options-aroundLatLngViaIP) |
+| `aroundRadius`      | `Number`         | Check [`aroundRadius` option](https://community.algolia.com/places/documentation.html#api-options-aroundRadius)           |
+| `debounce`          | <code>Number&#124;Boolean</code> | Pass `true` to debounce for 250ms, or pass a custom delay. Default: `false`                                              |
+| `custom-highlight`  | `Function`       | See [Custom Highlighting](#custom-highlighting) |
 
 Every props from [Vuetify Autocomplete component](https://vuetifyjs.com/en/components/autocompletes#api) are supported, except `items`, `loading`, `search-input.sync`, `filter` and `return-object` that are used internally.
 
@@ -103,3 +104,25 @@ Every props from [Vuetify Autocomplete component](https://vuetifyjs.com/en/compo
 | `input` | Emitted when the user select a place                                            | `@input="onInput"`, `onInput(place) { }`  |
 | `error` | Emitted when there is an error with Algolia API                                 |  `@error="onError"`, `onError(error) { }` |
 | `clear` |  Emitted when the user click on the _clear button_ (used with prop `clearable`) | `@clear="onClear"`, `onClear() { }`       |
+
+### Custom highlighting
+
+You can override the default behavior of highlighted search query hits via a custom function and/or slot. When using both, the returned value of your custom highlight function will become the `highlight` prop in the slot. Read more about Algolia Places highlight object [here](https://community.algolia.com/places/documentation.html#api-suggestion-value).
+
+#### Via function
+
+```
+<vuetify-algolia-places :custom-highlight="someFunction" />
+```
+
+#### Via slot
+
+Note that this slot's parent element is a `<v-list-tile-content>`
+
+```
+<vuetify-algolia-places>
+  <template slot="highlight" slot-scope="{ highlight }">
+    <v-list-tile-title>{{ highlight }}</v-list-tile-title>
+  </template>
+</vuetify-algolia-places>
+```
