@@ -13,16 +13,16 @@
     @input="onInput"
     @click:clear="onClear"
   >
-    <template v-slot:item="{ item }">
-      <template v-if="typeof item !== 'object'">
-        <v-list-tile-content>{{ item }}</v-list-tile-content>
+    <template slot="item" slot-scope="data">
+      <template v-if="typeof data.item !== 'object'">
+        <v-list-item-content>{{ data.item }}</v-list-item-content>
       </template>
       <template v-else>
-        <v-list-tile-content>
-          <slot name="highlight" :highlight="item.highlight">
-            <v-list-tile-title v-html="item.highlight" />
+        <v-list-item-content>
+          <slot name="highlight" :highlight="data.item.highlight">
+            <v-list-item-title v-html="data.item.highlight" />
           </slot>
-        </v-list-tile-content>
+        </v-list-item-content>
       </template>
     </template>
   </v-autocomplete>

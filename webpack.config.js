@@ -43,8 +43,20 @@ const config = {
         exclude: resolve('node_modules'),
       },
       {
-        test: /\.styl(us)?$/,
-        use: ['vue-style-loader', 'css-loader', 'stylus-loader'],
+        test: /\.s[ac]ss$/i,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+              sassOptions: {
+                fiber: require('fibers'),
+              },
+            },
+          },
+        ],
       },
     ],
   },
