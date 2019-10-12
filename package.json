@@ -24,7 +24,8 @@
   },
   "peerDependencies": {
     "algoliasearch": "^3.0.0",
-    "places.js": "^1.0.0"
+    "places.js": "^1.0.0",
+    "vue": "^2.6.0"
   },
   "dependencies": {
     "debounce": "^1.2.0"
@@ -55,7 +56,7 @@
     "style-loader": "^0.23.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue": "^2.5.22",
+    "vue": "^2.6.10",
     "vue-loader": "^15.6.2",
     "vue-template-compiler": "^2.5.22",
     "vuetify": "^1.4.4",
