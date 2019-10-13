@@ -16,7 +16,7 @@ cache:
     - ~/.cache
 
 before_install:
-  - npm instal --global yarn
+  - npm install --global yarn
 
 install:
   - yarn install --frozen-lockfile
