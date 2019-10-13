@@ -34,12 +34,6 @@ jobs:
         - yarn docs:build
 
     - stage: deploy
-      name: Deploy (dry run)
-      if: branch = develop AND type = push
-      node_js: node
-      script: yarn semantic-release --dry-run
-
-    - stage: deploy
       name: Deploy
       if: branch = master AND type = push
       node_js: node
