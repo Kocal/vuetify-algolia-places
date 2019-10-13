@@ -28,6 +28,11 @@ script:
 jobs:
   include:
     - stage: Release
+      if: branch = develop AND type = push
+      node_js: node
+      script:
+        yarn semantic-release --dry-run
+    - stage: Release
       if: branch = master AND type = push
       node_js: node
       script:
