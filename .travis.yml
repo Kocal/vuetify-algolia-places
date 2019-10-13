@@ -21,19 +21,26 @@ before_install:
 install:
   - yarn install --frozen-lockfile
 
-script:
-  - yarn lint
-  - yarn docs:build
+stages:
+  - test
+  - deploy
 
 jobs:
   include:
-    - stage: Release
+    - stage: test
+      name: Testing
+      script:
+        - yarn lint
+        - yarn docs:build
+
+    - stage: deploy
+      name: Deploy (dry run)
       if: branch = develop AND type = push
       node_js: node
-      script:
-        yarn semantic-release --dry-run
-    - stage: Release
+      script: yarn semantic-release --dry-run
+
+    - stage: deploy
+      name: Deploy
       if: branch = master AND type = push
       node_js: node
-      script:
-        yarn semantic-release
+      script: yarn semantic-release
