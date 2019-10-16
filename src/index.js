@@ -10,7 +10,7 @@ const defaultOptions = {
 };
 
 const install = (Vue, options = {}) => {
-  options = Object.assign({}, defaultOptions, options);
+  options = { ...defaultOptions, ...options );
 
   Vue.$vuetifyAlgoliaPlacesOptions = options;
   Vue.mixin({
