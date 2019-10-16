@@ -1,9 +1,6 @@
 dist: bionic
 
 language: node_js
-node_js:
-  - lts/*
-  - node
 
 branches:
   except:
@@ -16,9 +13,6 @@ cache:
     - ~/.npm
     - ~/.cache
 
-before_install:
-  - npm install --global yarn
-
 install:
   - yarn install --frozen-lockfile
 
@@ -30,6 +24,9 @@ jobs:
   include:
     - stage: test
       name: Testing
+      node_js:
+        - lts/*
+        - node
       script:
         - yarn lint
         - yarn docs:build
