@@ -20,23 +20,18 @@ stages:
   - test
   - deploy
 
+install: 
+  - yarn install --frozen-lockfile
+
+script:
+  - yarn lint
+  - yarn docs:build
+
 jobs:
   include:
-    - stage: test
-      name: Testing
-      
-      install: 
-        - yarn install --frozen-lockfile
-      script:
-        - yarn lint
-        - yarn docs:build
-
     - if: branch = master AND type = push
       stage: deploy
       name: Deploy
       node_js: node
-      
-      install: 
-        - yarn install --frozen-lockfile
       script: 
         - yarn semantic-release
