@@ -7217,9 +7217,9 @@ pkg-dir@^4.2.0:
     find-up "^4.0.0"
 
 places.js@^1.15.4:
-  version "1.16.5"
-  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.16.5.tgz#060b983ad77d3b196278e3f3f3f1f561b56c488b"
-  integrity sha512-beV9yyH/baoHoFAgDFzGaPUc329WAFv9u7CuNAqIaJ+lwqeGbiZoChc8DxXgQmrOyUE+zrEh+im1hDHfj0155Q==
+  version "1.16.6"
+  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.16.6.tgz#bce243f7d1a1072f9d1a60c9dccdf1c739c82ae2"
+  integrity sha512-SGDYijNL8oPBr52avj81+HL/u//Igvv6V4KmL9umkbLufgh/hbT+tl0RyaCIxt4tKtnxoFInKFiewVq4xygqrQ==
   dependencies:
     algolia-aerial "^1.5.3"
     algoliasearch "^3.31.0"
