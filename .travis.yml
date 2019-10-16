@@ -16,9 +16,6 @@ cache:
     - ~/.npm
     - ~/.cache
 
-install:
-  - yarn install --frozen-lockfile
-
 stages:
   - test
   - deploy
@@ -27,12 +24,19 @@ jobs:
   include:
     - stage: test
       name: Testing
+      
+      install: 
+        - yarn install --frozen-lockfile
       script:
         - yarn lint
         - yarn docs:build
 
-    - stage: deploy
+    - if: branch = master AND type = push
+      stage: deploy
       name: Deploy
-      if: branch = master AND type = push
       node_js: node
-      script: yarn semantic-release
+      
+      install: 
+        - yarn install --frozen-lockfile
+      script: 
+        - yarn semantic-release
