@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "docs:build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "docs:build": "cross-env NODE_ENV=production webpack --hide-modules",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
     "prettier": "prettier '{src,docs}/**/*.{js,vue}'",
