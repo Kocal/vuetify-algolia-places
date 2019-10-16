@@ -1,18 +1,37 @@
-sudo: false
-dist: trusty
+dist: bionic
 
 language: node_js
-node_js:
+node_js: 
+  - lts/*
+  - node
+
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
 
 cache:
   yarn: true
+  directories:
+    - node_modules
+    - ~/.npm
+    - ~/.cache
 
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH="$HOME/.yarn/bin:$PATH"
-#  - yarn global add codecov
+stages:
+  - test
+  - deploy
+
+install: 
+  - yarn install --frozen-lockfile
 
 script:
   - yarn lint
   - yarn docs:build
-#  - yarn test && codecov
+
+jobs:
+  include:
+    - if: branch = master AND type = push
+      stage: deploy
+      name: Deploy
+      node_js: node
+      script: 
+        - yarn semantic-release

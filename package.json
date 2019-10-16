@@ -1,6 +1,6 @@
 {
   "name": "vuetify-algolia-places",
-  "version": "1.0.0-beta.3",
+  "version": "0.0.0-development",
   "description": "Algolia places for Vuetify",
   "main": "src/index.js",
   "repository": "https://github.com/Kocal/vuetify-algolia-places.git",
@@ -11,11 +11,12 @@
   ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "docs:build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "docs:build": "cross-env NODE_ENV=production webpack --hide-modules",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
     "prettier": "prettier '{src,docs}/**/*.{js,vue}'",
-    "prettier:write": "npm run prettier -- --write"
+    "prettier:write": "npm run prettier -- --write",
+    "semantic-release": "semantic-release"
   },
   "husky": {
     "hooks": {
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
+    "@kocal/semantic-release-preset": "^1.1.14",
     "algoliasearch": "^3.32.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
@@ -42,10 +44,10 @@
     "css-loader": "^3.0.0",
     "deepmerge": "^4.1.1",
     "eslint": "^5.13.0",
-    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^2.1.1",
+    "eslint-loader": "^3.0.2",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-vue": "^5.1.0",
@@ -54,10 +56,11 @@
     "husky": "^3.0.0",
     "places.js": "^1.15.4",
     "prettier": "^1.16.3",
-    "pretty-quick": "^1.10.0",
+    "pretty-quick": "^2.0.0",
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
-    "style-loader": "^0.23.1",
+    "semantic-release": "^15.13.24",
+    "style-loader": "^1.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue": "^2.5.0",
