@@ -60,7 +60,7 @@
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
     "semantic-release": "^15.13.24",
-    "style-loader": "^0.23.1",
+    "style-loader": "^1.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue": "^2.5.0",
