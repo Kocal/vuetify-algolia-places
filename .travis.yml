@@ -1,6 +1,9 @@
 dist: bionic
 
 language: node_js
+node_js: 
+  - lts/*
+  - node
 
 branches:
   except:
@@ -24,14 +27,6 @@ jobs:
   include:
     - stage: test
       name: Testing
-      node_js: lts/*
-      script:
-        - yarn lint
-        - yarn docs:build
-        
-    - stage: test
-      name: Testing
-      node_js: node
       script:
         - yarn lint
         - yarn docs:build
