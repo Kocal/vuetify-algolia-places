@@ -12,6 +12,10 @@
           Algolia Places
           <v-icon right>open_in_new</v-icon>
         </v-btn>
+        <v-btn text href="https://vuetifyjs.com/components/autocompletes" target="_blank">
+          Vuetify Autocomplete
+          <v-icon right>open_in_new</v-icon>
+        </v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-content>
@@ -20,7 +24,9 @@
           <v-col md="10" lg="8" xl="6">
             <h2 class="display-2 text-center">Vuetify Algolia Places</h2>
             <vuetify-algolia-places
-              v-model="place"
+              v-model="placeFormatted"
+              :search-input.sync="query"
+              :cache-items="options.multiple"
               v-bind="options"
               class="mt-10 mb-4"
               @error="onError"
@@ -70,6 +76,15 @@
                     <v-switch v-model="options.singleLine" label="Single line" color="primary" hide-details />
                     <v-switch v-model="options.filled" label="Style filled" color="primary" hide-details />
                     <v-switch v-model="options.solo" label="Style solo" color="primary" hide-details />
+                    <v-switch
+                      v-model="options.multiple"
+                      label="Multiple"
+                      color="primary"
+                      hide-details
+                      @change="updateModel"
+                    />
+                    <v-switch v-model="options.chips" label="Chips" color="primary" hide-details />
+                    <v-switch v-model="options.deletableChips" label="Deletable chips" color="primary" hide-details />
                   </v-col>
                   <v-col cols="12" md8 sm="12">
                     <v-text-field v-model="options.label" label="Label" />
@@ -92,10 +107,10 @@
                 <code class="pa-3 mb-3 d-block">{{ usageCode }}</code>
               </v-col>
             </v-row>
-            <v-row v-if="place">
+            <v-row v-if="showModel">
               <v-col>
-                <h2 class="headline mb-3">Place</h2>
-                <code class="mb-3 pa-3 d-block">{{ JSON.stringify(place, null, 2) }}</code>
+                <h2 class="headline mb-3">Model</h2>
+                <code class="mb-3 pa-3 d-block">{{ JSON.stringify(placeFormatted, null, 2) }}</code>
               </v-col>
             </v-row>
           </v-col>
@@ -106,13 +121,12 @@
 </template>
 
 <script>
-const initialPlace = '30 Rue du Sergent Michel Berthet, Lyon';
-
 export default {
   name: 'App',
   data() {
     return {
-      place: initialPlace,
+      query: '30 Rue du Sergent Michel Berthet, Lyon',
+      place: null,
       types: ['city', 'country', 'address', 'busStop', 'trainStation', 'townhall', 'airport'],
       languages: ['fr', 'en', 'es'],
       countries: ['fr', 'gb', 'es'],
@@ -133,10 +147,16 @@ export default {
         solo: true,
         label: 'Search a place',
         appendIcon: 'location_on',
+        multiple: false,
+        chips: false,
+        deletableChips: false,
       },
     };
   },
   computed: {
+    showModel() {
+      return Array.isArray(this.place) ? this.place.length > 0 : this.place;
+    },
     installationCode() {
       return `import Vue from 'vue';
 import VuetifyAlgoliaPlaces from 'vuetify-algolia-places';
@@ -205,17 +225,42 @@ Vue.use(VuetifyAlgoliaPlaces, {
         code += `\n  solo`;
       }
 
+      if (this.options.multiple) {
+        code += `\n  multiple`;
+      }
+
+      if (this.options.chips) {
+        code += `\n  chips`;
+      }
+
+      if (this.options.deletableChips) {
+        code += `\n  deletableChips`;
+      }
+
       code += '\n/>';
       return code;
     },
+    placeFormatted: {
+      get() {
+        if (Array.isArray(this.place)) {
+          // Remove hit and rawAnswer props from every object in place array
+          return this.place.map(({ hit, rawAnswer, ...p }) => p);
+        }
+
+        if (this.place) {
+          delete this.place.hit;
+          delete this.place.rawAnswer;
+          return this.place;
+        }
+
+        return this.place;
+      },
+      set(value) {
+        this.place = value;
+      },
+    },
   },
   watch: {
-    place() {
-      if (this.place) {
-        delete this.place.hit;
-        delete this.place.rawAnswer;
-      }
-    },
     'options.filled': function(filled) {
       if (filled) {
         this.options.solo = false;
@@ -233,6 +278,13 @@ Vue.use(VuetifyAlgoliaPlaces, {
     },
     onClear() {
       console.log('Clear');
+    },
+    updateModel(multiple) {
+      if (multiple) {
+        this.place = [];
+      } else {
+        this.place = null;
+      }
     },
   },
 };
