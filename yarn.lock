@@ -665,9 +665,9 @@
     to-fast-properties "^2.0.0"
 
 "@kocal/semantic-release-preset@^1.1.14":
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/@kocal/semantic-release-preset/-/semantic-release-preset-1.1.15.tgz#f3692ba0f27e0f3619e61c06c3831b4be538fd6f"
-  integrity sha512-rIsmdeZA1bBubhq+KQj4/jOfJ2sKp25rLyd0lop+weW4cssdYgWWWeLal/H7x7ndpTl5brKNHgDbyvrpVkJqTg==
+  version "1.1.16"
+  resolved "https://registry.yarnpkg.com/@kocal/semantic-release-preset/-/semantic-release-preset-1.1.16.tgz#1d8a06d6b73fecff7e33f2d2c603b6686d3e8b4c"
+  integrity sha512-yNr11Y7bdumSoV1n5EpTDgbHq4e+IbhJBMQ8+KteRJCkuNnUZDYvvco/nCOOSBf6m3CUGqdZF8IAKs1y9RF5aQ==
   dependencies:
     "@semantic-release/commit-analyzer" "^6.1.0"
     "@semantic-release/github" "^5.2.1"
