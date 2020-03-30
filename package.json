@@ -52,7 +52,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-vue": "^6.1.1",
     "fibers": "^4.0.1",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^4.0.3",
     "husky": "^3.0.0",
     "places.js": "^1.15.4",
     "prettier": "^1.16.3",
