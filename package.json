@@ -59,7 +59,7 @@
     "pretty-quick": "^2.0.0",
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
-    "semantic-release": "^15.13.24",
+    "semantic-release": "^17.2.3",
     "style-loader": "^1.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
