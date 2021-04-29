@@ -1,0 +1,39 @@
+version: 2
+registries:
+  npm-registry-npm-pkg-github-com:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: "${{secrets.NPM_REGISTRY_NPM_PKG_GITHUB_COM_TOKEN}}"
+
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 10
+  target-branch: develop
+  ignore:
+  - dependency-name: husky
+    versions:
+    - 4.3.8
+    - 5.0.9
+    - 5.1.0
+    - 5.1.2
+    - 5.1.3
+    - 5.2.0
+  - dependency-name: algoliasearch
+    versions:
+    - 4.8.4
+    - 4.8.5
+    - 4.8.6
+  - dependency-name: html-webpack-plugin
+    versions:
+    - 4.5.1
+  - dependency-name: handlebars
+    versions:
+    - 4.7.6
+  - dependency-name: elliptic
+    versions:
+    - 6.5.3
+  registries:
+  - npm-registry-npm-pkg-github-com
