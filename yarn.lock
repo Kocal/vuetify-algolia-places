@@ -7785,9 +7785,9 @@ pkg-up@^2.0.0:
     find-up "^2.1.0"
 
 places.js@^1.15.4:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.18.1.tgz#524fd43952e3b83268f828141a1325cdcdde7f58"
-  integrity sha512-73ie7F+6TJRtRnxZoLtIRLh+mon7O5ZEdAknYPOL396w/x+u5M9Om05HcTLDnl0/64poH+LmgDmQey2mNH7/lw==
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.19.0.tgz#6361c240713e20713f9f4124181752a257059f92"
+  integrity sha512-OtX8kMT1K2uhwoHZoyMuHWZ3CrkNfjxRDsG2hBHye4S1dsTLU4MlwEmUrlKYYefYXiV6JCvd7bULU3uoJ6NcoA==
   dependencies:
     algoliasearch "^3.35.1"
     autocomplete.js "^0.37.0"
